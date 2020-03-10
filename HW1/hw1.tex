@@ -1,0 +1,915 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Template for homework of Introduction to Machine Learning.
+%
+%  Fill in your name, lecture number, lecture date and body
+%  of homework as indicated below.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[11pt,letter,notitlepage]{article}
+%Mise en page
+\usepackage[left=2cm, right=2cm, lines=45, top=0.8in, bottom=0.7in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{graphicx,float}
+\usepackage{pdfpages} 
+\usepackage{enumitem}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1.5pt}
+\pagestyle{fancy}
+\newcommand\Loadedframemethod{TikZ}
+\usepackage[framemethod=\Loadedframemethod]{mdframed}
+
+\usepackage{amssymb,amsmath,mathrsfs}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{thmtools}
+
+\setlength{\topmargin}{0pt}
+\setlength{\textheight}{9in}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% Define the Exercise environment %%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\mdtheorem[
+topline=false,
+rightline=false,
+leftline=false,
+bottomline=false,
+leftmargin=-10,
+rightmargin=-10
+]{exercise}{\textbf{Exercise}}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% End of the Exercise environment %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Define the Solution Environment %%
+%%%%%%%%%%%%%%%%%%%%%%%
+\declaretheoremstyle
+[
+spaceabove=0pt, 
+spacebelow=0pt, 
+headfont=\normalfont\bfseries,
+notefont=\mdseries, 
+notebraces={(}{)}, 
+headpunct={:\quad}, 
+headindent={},
+postheadspace={ }, 
+postheadspace=4pt, 
+bodyfont=\normalfont, 
+qed=$\blacksquare$,
+preheadhook={\begin{mdframed}[style=myframedstyle]},
+	postfoothook=\end{mdframed},
+]{mystyle}
+
+\declaretheorem[style=mystyle,title=Solution,numbered=no]{solution}
+\mdfdefinestyle{myframedstyle}{%
+	topline=false,
+	rightline=false,
+	leftline=false,
+	bottomline=false,
+	skipabove=-6ex,
+	leftmargin=-10,
+	rightmargin=-10}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% End of the Solution environment %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\eqref}[1]{Eq.~(\ref{#1})}
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+
+%% Homework info.
+\newcommand{\posted}{\text{Mar. 5, 2020}}       			%%% FILL IN POST DATE HERE
+\newcommand{\due}{\text{Mar. 12, 2020}} 			%%% FILL IN Due DATE HERE
+\newcommand{\hwno}{\text{1}} 		           			%%% FILL IN LECTURE NUMBER HERE
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Put your information here %%
+%%%%%%%%%%%%%%%%%%%
+\newcommand{\name}{\text{Yunning Cao}}  	            %%% FILL IN YOUR NAME HERE
+\newcommand{\id}{\text{PB16021370}}		       			%%% FILL IN YOUR ID HERE
+%%%%%%%%%%%%%%%%%%%%
+%% End of the student's info %%
+%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\proj}[2]{\textbf{P}_{#2} (#1)}
+\newcommand{\lspan}[1]{\textbf{span}  (#1)  }
+\newcommand{\rank}[1]{ \textbf{rank}  (#1)  }
+\newcommand{\dom}{ \textbf{dom}  }
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\DeclareMathOperator*{\argmin}{\bf argmin}
+
+
+\lhead{
+	\textbf{\name}
+}
+\rhead{
+	\textbf{\id}
+}
+\chead{\textbf{
+		Homework \hwno
+}}
+
+
+\begin{document}
+\vspace*{-4\baselineskip}
+\thispagestyle{empty}
+
+
+\begin{center}
+{\bf\large Introduction to Machine Learning}\\
+{Spring 2020}\\
+University of Science and Technology of China
+\end{center}
+
+\noindent
+Lecturer: Jie Wang  			 %%% FILL IN LECTURER HERE
+\hfill
+Homework \hwno             			
+\\
+Posted: \posted
+\hfill
+Due: \due
+\\
+Name:\name
+\hfill
+ID: \id
+\hfill
+
+\noindent
+\rule{\textwidth}{2pt}
+
+\medskip
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BODY OF HOMEWORK GOES HERE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Notice, }to get the full credits, please present your solutions step by step.
+
+
+
+\begin{exercise}[Rank of matrices \textnormal{25pts}]
+	Let $\mathbf{A} \in \mathbb{R}^{m\times n}$ and $\mathbf{B}\in \mathbb{R}^{n\times p}$.
+	\begin{enumerate}
+	    \item Please show that
+            \begin{enumerate}
+                \item $\rank{\mathbf{A}} = \rank{\mathbf{A}^{\top}}$;
+                \item $\rank{\mathbf{A}\mathbf{B}} \leq \rank{\mathbf{A}}$;
+                \item $\rank{\mathbf{A}\mathbf{B}} \leq \rank{\mathbf{B}}$;
+                \item $\rank{\mathbf{A}} = \rank{\mathbf{A}^{\top}  \mathbf{A}}$.
+            \end{enumerate}
+        \item The \emph{column space} of $\mathbf{A}$ is defined by
+                \begin{align*}
+                    \mathcal{C}(\mathbf{A} ) = \{ \mathbf{y}\in \mathbb{R}^m : \mathbf{y} = \mathbf{Ax},\,\mathbf{x}\in\mathbb{R}^n\}.
+                \end{align*}
+                The \emph{null space} of $\mathbf{A}$ is defined by
+                \begin{align*}
+                    \mathcal{N}(\mathbf{A})  = \{ \mathbf{x}\in \mathbb{R}^n : \mathbf{Ax}=0\}.
+                \end{align*}
+                Notice that, the rank of $\mathbf{A}$ is the dimension of the column space of $\mathbf{A}$.
+                
+                Please show that:
+	               \begin{enumerate}
+                	    \item $\rank{\mathbf{A}} + \dim ( \mathcal{N}( \mathbf{A} ) ) = n$;
+                	    %\item given $\mathbf{y}\in \mathbb{R}^m$, show that $\mathbf{y}=0$ if and only if $\mathbf{a}_i^{\top}\mathbf{y}=0$ for $i=1,\ldots,m$, where $\{\mathbf{a}_1,\mathbf{a}_2,\ldots,\mathbf{a}_m\}$ is a basis of $\mathbb{R}^m$.
+                	    \item $\mathbf{y}=\mathbf{0}$ if and only if $\mathbf{a}_i^{\top}\mathbf{y}=0$ for $i=1,\ldots,m$, where $\mathbf{y}\in \mathbb{R}^m$ and  $\{\mathbf{a}_1,\mathbf{a}_2,\ldots,\mathbf{a}_m\}$ is a basis of $\mathbb{R}^m$.
+                	\end{enumerate}    
+        \item Show that
+        \begin{align}\label{eqn:rankaba}
+            \rank{\mathbf{AB}}=\rank{\mathbf{B}}-\dim(\mathcal{C}(\mathbf{B})\cap \mathcal{N}(\mathbf{A})).
+        \end{align}
+        \item Suppose that the first term on the right-hand side (RHS) of \eqref{eqn:rankaba} changes to $\rank{\mathbf{A}}$. Please find the second term on the RHS of \eqref{eqn:rankaba} such that it still holds.
+        \item Show the results in 1. by \eqref{eqn:rankaba} or the one you established in 4.
+	\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \textbf{Exercise 1}
+    \begin{enumerate}
+        \item Proof:
+        \begin{enumerate}
+            \item 
+                According to the defination of transform:\\
+                $column\rank{\mathbf{A}} = row\rank{\mathbf{A^{\top}}}$\\
+                $row\rank{\mathbf{A}} = column\rank{\mathbf{A^{\top}}}$\\
+                $\because$ columnrank=rowrank=rank \\
+                $\therefore \rank{\mathbf{A}}=\rank{\mathbf{A^{\top}}}$
+            \item 
+                Let $\mathbf{AB}=\mathbf{C}. \therefore$ equation $\mathbf{AX}=\mathbf{C}$ has solution $\mathbf{B}$.\\
+                $\therefore \rank{\mathbf{A}}=\rank{\mathbf{A,C}}$\\
+                $\because \rank{\mathbf{C}}\leqslant\rank{\mathbf{A,C}}$\\
+                we can get $\rank{\mathbf{AB}}=\rank{\mathbf{C}}\leqslant\rank{\mathbf{A,C}}=\rank{\mathbf{A}}$
+            \item 
+                $\mathbf{B^{\top}A^{\top}}=\mathbf{C^{\top}}$\\
+                follow the procedure in (b) and we have:\\
+                $\rank{\mathbf{AB}}=\rank{\mathbf{(AB)^{\top}}}\leqslant\rank{\mathbf{B^{\top}}}=\rank{\mathbf{B}}$
+            \item 
+                $\mathbf{Ax}=0 
+                \Rightarrow \mathbf{A^{\top}Ax}=0
+                \Rightarrow \mathbf{x^{\top}A^{\top}Ax}=0
+                \Rightarrow \mathbf{(Ax)^{\top}Ax}=0
+                \Rightarrow \Vert\mathbf{Ax}\Vert=0
+                \Rightarrow \mathbf{Ax}=0$\par
+                i.e. equation $\mathbf{Ax}=0$ and $\mathbf{A}^{\top}\mathbf{Ax}=0$ have the same solution.\\
+                i.e. $\rank{\mathbf{A}}=\rank{\mathbf{A^{\top}A}}$\\
+        \end{enumerate}
+        
+        \item Proof:
+        \begin{enumerate}
+            \item 
+            \begin{itemize}
+                \item 
+                For convenience, we firstly claim some symbols:\\
+                \emph{preimage space of} $\mathbf{A}$ is $\mathbb{R}^n$, \emph{image space of} $\mathbf{A}$ is $\mathbb{R}^m$.\\
+                Let $\mathbb{R}^n=\mathbf{H} \oplus \mathcal{N}(\mathbf{A})$,$\Rightarrow n=dim(\mathbf{H})+dim(\mathcal{N}(\mathbf{A}))$.\\
+				Let $\mathscr{A}$ represent the linear mapping described by matrix $\mathbf{A}$.\\
+				Let $\mathscr{T}$ be the same linear mapping as $\mathscr{A}$ except that the preimage is localized on $\mathbf{H}$. i.e. $\mathbf{\mathscr{T}:H \rightarrow \mathcal{C}(\mathbf{A})}$.
+				\item
+				Then we only need to proof $dim(H)=dim(\mathcal{C}(\mathbf{A}))$. We will proof that $\mathscr{T}$ is a bijection, which means the two spaces are isomorphism,i.e. have the same dimensions.
+				\begin{itemize}
+					\item injection: \\
+					$\forall \mathbf{u,v} \in \mathbf{H}, \mathbf{\mathscr{T}(u)=\mathscr{T}(v)}\Rightarrow \mathbf{\mathscr{T}(u-v)=0} \Rightarrow
+					\mathbf{u-v \in H}\cap\mathcal{N}(\mathbf{A})\Rightarrow \mathbf{u-v=0}\Rightarrow\mathbf{u=v}.$ 
+					\item surjection: \\
+					$\forall \mathbf{v} \in \mathcal{C}(\mathbf{A}), \exists\mathbf{u} \in \mathbb{R}^n, s.t.~ \mathbf{v}=\mathscr{A}(\mathbf{u}). \\ 
+					\mathbf{u=a+b}, where~ \mathbf{a \in \mathcal{N}(A), b \in H}.$\\
+					$\mathbf{v=\mathscr{A}(u)=\mathscr{A}(a+b)=\mathscr{A}(a)+\mathscr{A}(b)=\mathscr{A}(b)=\mathscr{T}(b)}$.
+				\end{itemize}
+            \end{itemize}
+			In conclusion: $\mathscr{T}$ is both injection and surjection, which means $\mathscr{T}$ is bijection. i.e. $dim(H)=dim(\mathcal{C}(\mathbf{A}))$. $\Rightarrow \rank{\mathbf{A}} + \dim ( \mathcal{N}( \mathbf{A} ) ) = n.$ \qedsymbol
+			
+            \item 
+            \begin{itemize}
+                \item $\Rightarrow$: if $\mathbf{y}=0$, it is obvious that $\mathbf{a_{i}^{\top}y}=0.$\\
+                \item $\Leftarrow$: $$\mathbf{a_{i}^{\top}y}=0 \Rightarrow \sum_{i=1}^{m}{y_i\mathbf{a_i^{\top}}=0}$$\\
+                $\because \mathbf{a_i^{\top}}$ is a basis of $\mathbb{R}^m$, which means they are all linear independent.\\
+                $\therefore y_i=0$ for $i = 1,\dots,m$. i.e. $\mathbf{y}=0.$
+            \end{itemize} 
+            In conclusion, we get $\mathbf{y}=0 \Leftrightarrow \mathbf{a_{i}^{\top}y}=0$.
+        \end{enumerate}
+		
+		\item Proof:\\
+		We can use the conclusion in 2(a):\\
+		$\rank{\mathbf{AB}}=p-\dim ( \mathcal{N}( \mathbf{AB} ) )$, \\\\
+		Let $\mathbf{Ay=0}$, where $\mathbf{y=Bx}$.\\
+		Then we know that \\
+		$\mathcal{N}(\mathbf{A})  = \{ \mathbf{y}\in \mathbb{R}^n : \mathbf{Ay}=0\}$, $\mathcal{C}(\mathbf{B})  = \{ \mathbf{y}\in \mathbb{R}^n : \mathbf{y=Bx},x\in\mathbb{R}^p\}$ and \\
+		$\mathcal{N}(\mathbf{AB})  = \{ \mathbf{x}\in \mathbb{R}^p : \mathbf{ABx}=0\}$.\\
+		$\therefore~dim(\mathcal{N}(\mathbf{AB}))=dim(\mathcal{N}(\mathbf{A})\cap \mathcal{C}(B))+dim(\mathcal{N}(\mathbf{B}))\\
+		\therefore ~\rank{\mathbf{AB}}=p-dim(\mathcal{N}(\mathbf{B}))-dim(\mathcal{N}(\mathbf{A})\cap\mathcal{C}(\mathbf{B}))\\
+		\therefore~\rank{\mathbf{AB}}=\rank{\mathbf{B}}-dim(\mathcal{N}(\mathbf{A})\cap\mathcal{C}(\mathbf{B}))$
+		
+		\item Proof:
+		\begin{align*}
+			\rank{\mathbf{AB}}
+			&=\rank{\mathbf{B^{\top}A^{\top}}}\\
+			&=\rank{\mathbf{A^{\top}}}-dim(\mathcal{N}(\mathbf{B^{\top}})\cap\mathcal{C}(\mathbf{A^{\top}}))\\
+			&=\rank{\mathbf{A}}-dim(\mathcal{N}(\mathbf{B^{\top}})\cap\mathcal{C}(\mathbf{A^{\top}}))
+		\end{align*}
+		
+		\item Proof:
+		\begin{enumerate}
+		 \item 
+		 According to Eq.(1)\\
+		 $\rank{\mathbf{A^{\top}A}}=\rank{\mathbf{A}}-dim(\mathcal{N}(\mathbf{A^{\top}})\cap\mathcal{C}(\mathbf{A}))$\\
+		 According to 4.\\
+		 $\rank{\mathbf{A^{\top}A}}=\rank{\mathbf{A^{\top}}}-dim(\mathcal{N}(\mathbf{A^{\top}})\cap\mathcal{C}(\mathbf{A}))$\\
+		 In conclusion, $\rank{\mathbf{A}}=\rank{\mathbf{A^{\top}}}$
+		 \item
+		 $\rank{\mathbf{AB}}=\rank{\mathbf{A}}-dim(\mathcal{N}(\mathbf{B^{\top}})\cap\mathcal{C}(\mathbf{A^{\top}}))\leqslant \rank{\mathbf{A}}.$
+		 
+		 \item
+		 $\rank{\mathbf{AB}}=\rank{\mathbf{B}}-dim(\mathcal{N}(\mathbf{A})\cap\mathcal{C}(\mathbf{B}))\leqslant \rank{\mathbf{B}}.$
+		 
+		 \item
+		 $\rank{\mathbf{A^{\top}A}}=\rank{\mathbf{A}}-dim(\mathcal{N}(\mathbf{A^{\top}})\cap\mathcal{C}(\mathbf{A}))$\\
+		 $\forall \mathbf{x} \in \mathcal{N}(\mathbf{A^{\top}}),~\mathbf{x}$ is orthogonal with the row space of $\mathbf{A^{\top}},$ \\i.e. the column space of $\mathbf{A}: \mathcal{C}(\mathbf{A}).$\\
+		 $\therefore \mathcal{N}(\mathbf{A^{\top}})\cap\mathcal{C}(\mathbf{A})=0\\
+		 \therefore dim(\mathcal{N}(\mathbf{A^{\top}})\cap\mathcal{C}(\mathbf{A}))=0.\\
+		 \therefore \rank{\mathbf{A^{\top}A}}=\rank{A}.$
+		 
+		\end{enumerate}
+
+    \end{enumerate}
+\end{solution}
+\newpage
+
+\begin{exercise}[Linear equations
+\textnormal{15pts}]
+
+Consider the system of linear equations in $\mathbf{w}$
+\begin{align}\label{eq1}
+    \mathbf{y} = \mathbf{X} \mathbf{w} ,    
+\end{align}
+where $\mathbf{y} \in \mathbb{R}^{n}$, $\mathbf{w} \in \mathbb{R}^{d}$, and $\mathbf{X} \in \mathbb{R}^{n \times d}$.
+
+\begin{enumerate}
+    \item 
+    
+        Give an example for ``$\mathbf{X}$'' and ``$\mathbf{y}$'' to satisfy the following three situations respectively:
+    \begin{enumerate}
+        \item there exists one unique solution;
+        \item there does not exist any solution;
+        \item there exists more than one solution.
+    \end{enumerate}
+   
+    \item 
+    \iffalse
+    Suppose that the equation (\ref{eq1}) admits a solution, prove that $\mathbf{y} \in \mathcal{C}(\mathbf{X})$ where $\mathcal{C}(\mathbf{X}) $ is the column space of $\mathbf{X}$.
+    \fi
+    Suppose that $\mathbf{X}$ has full column rank. Show that the system of linear equations (\ref{eq1}) always admits a unique solution.
+        
+    \item (\textbf{Normal equations}) Consider  another system of linear equations in $\mathbf{w}$
+    \begin{align}\label{eq_normal}
+        \mathbf{X}^{\top}\mathbf{y} = \mathbf{X}^{\top}\mathbf{X}\mathbf{w}. 
+    \end{align}
+    Please show that the system (\ref{eq_normal}) always admits a solution. Moreover, does it always admit a unique solution?
+\end{enumerate}
+    
+\end{exercise}
+
+\begin{solution}
+	\textbf{Exercise 2}
+	\begin{enumerate}
+	 \item 
+	 
+	\end{enumerate}
+
+\end{solution}
+
+\newpage
+
+\begin{exercise}[Basis and coordinates \textnormal{15pts}]
+
+    Suppose that $\{\mathbf{a}_1, \mathbf{a}_2,\dots,\mathbf{a}_n\}$ is a basis of an $n$-dimensional vector space $V$. 
+    \begin{enumerate}
+        \item Show that $\{\lambda_1 \mathbf{a}_1, \lambda_2 \mathbf{a}_2, \dots, \lambda_n\mathbf{a}_n\}$ is also a basis of $V$ for any nonzero scalars $\lambda_1,\lambda_2, \dots, \lambda_n$. 
+        \item Let $V =\mathbb{R}^n$ and  $(\mathbf{b}_1,\mathbf{b}_2,\dots, \mathbf{b}_n) = (\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n)\mathbf{P}$, where $\mathbf{P}\in \mathbb{R}^{n\times n}$ and $\mathbf{b}_i\in \mathbb{R}^n$, for any $i\in\{1,\dots,n\}$. Show that $\{ \mathbf{b}_1, \mathbf{b}_2, \dots, \mathbf{b}_n\}$ is also a basis of $V$ for any invertible  matrix $\mathbf{P}$.
+        %\item Let $V = \mathbb{R}^n$. Show that $\{\mathbf{P}\mathbf{a}_1, \dots, \mathbf{P}\mathbf{a}_n\}$ is also a basis of $V$ for any positive definite matrix $\mathbf{P}$.
+        \item Suppose that the coordinate of a vector $\mathbf{v}$ under the basis $\{\mathbf{a}_1,  \mathbf{a}_2,\dots,\mathbf{a}_n\}$ is $\mathbf{x}=(x_1,x_2,\dots x_n)$.
+        \begin{enumerate}
+            \item What is the coordinate of $\mathbf{v}$ under $\{\lambda_1 \mathbf{a}_1, \lambda_2 \mathbf{a}_2, \dots, \lambda_n\mathbf{a}_n\}$? 
+            
+            \item What are the coordinates of $\mathbf{w} = \mathbf{a}_1+\dots + \mathbf{a}_n$ under $\{\mathbf{a}_1, \mathbf{a}_2,\dots,\mathbf{a}_n\}$ and $\{\lambda_1 \mathbf{a}_1, \lambda_2 \mathbf{a}_2, \dots, \lambda_n\mathbf{a}_n\}$? Note that  $\lambda_i \neq 0$ for any $i\in \{1,\dots,n\}$.
+        \end{enumerate}
+    \end{enumerate}
+\end{exercise}
+\begin{solution}
+	\textbf{Exercise 3}
+	\begin{enumerate}
+		\item 
+		$\forall \mathbf{v \in V},~\exists~k_1,\dots,k_n,$ s.t.
+		\begin{align*}
+			\mathbf{v}
+			=\sum_{i=1}^n{k_i\mathbf{a}_i}
+			=\sum_{i=1}^n{\frac{k_i}{\lambda_i}(\lambda_i\mathbf{a}_i)}
+			=\sum_{i=1}^n{k_i^{\prime}(\lambda_i\mathbf{a}_i)}.~~~ \blacksquare
+		\end{align*}
+	 
+		\item
+		$\forall \mathbf{v \in V},~\exists~\mathbf{k}=(k_1,\dots,k_n)^{\top},$ s.t.
+		\begin{align*}
+			\mathbf{v}
+			&=\sum_{i=1}^n{k_i\mathbf{a}_i}\\
+			&=\mathbf{(a_1,a_2,\dots,a_n)k}\\
+			&=\mathbf{(b_1,b_2,\dots,b_n)(P^{-1}k)}\\
+			&=\mathbf{(b_1,b_2,\dots,b_n)k^{\prime}}~~~~~~~~~ \blacksquare
+		\end{align*}
+		
+		\item
+		\begin{enumerate}
+			\item 
+			Based on 1., simply replace $\mathbf{k}$ with $\mathbf{x}$:
+			\begin{align*}
+				\mathbf{v}
+				=\sum_{i=1}^n{x_i\mathbf{a}_i}
+				=\sum_{i=1}^n{\frac{x_i}{\lambda_i}(\lambda_i\mathbf{a}_i)}.\\
+				\mathbf{x^{\prime}=(\frac{x_1}{\lambda_1},\dots,\frac{x_n}{\lambda_n})}~~~~~~\blacksquare
+			\end{align*}
+			
+			\item
+			\begin{align*}
+				&\mathbf{\{a_1,a_2,\dots,a_n\}: ~x=(1,1,\dots,1)}\\
+				&\mathbf{\{\lambda_{1}a_1,\lambda_2a_2,\dots,\lambda_{n}a_n\}:~x^{\prime}=(\frac{1}{\lambda_1},\frac{1}{\lambda_2},\dots,\frac{1}{\lambda_n})}
+			\end{align*}
+
+		\end{enumerate}
+
+	\end{enumerate}
+	
+\end{solution}
+
+\newpage
+
+\begin{exercise}[ \textnormal{5pts}] 
+	Let $\mathbf{x},\mathbf{a}\in \mathbb{R}^n$ and $\mathbf{y}\in \mathbb{R}^m$. Find the gradients of the following functions.
+	\begin{enumerate}
+	    \item $f(\mathbf{x}) = \mathbf{a}^{\top}\mathbf{x}$.
+	    \item $f(\mathbf{x}) = \mathbf{x}^{\top}\mathbf{x}$.
+	    \item $f(\mathbf{x})=\| \mathbf{y} - \mathbf{A}\mathbf{x} \|_2^2$, where $\mathbf{A}\in\mathbb{R}^{m\times n}$.
+	    \item  $f(\mathbf{X}) = \det(\mathbf{X})$, where $\det(\mathbf{X})$ is the determinant of $\mathbf{X} \in \mathbb{R}^{n \times n}$.
+	\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+	\textbf{Exercise 4}
+	\begin{enumerate}
+		\item
+		\begin{align*}
+			\mathbf{\nabla}f(\mathbf{x})
+			&=\mathbf{\nabla}(\sum_{i=1}^{n}{a_ix_i})\\
+			&=\mathbf{a}
+		\end{align*}
+		
+		\item
+		\begin{align*}
+			\mathbf{\nabla}f(\mathbf{x})
+			&=\mathbf{\nabla}(\sum_{i=1}^{n}{x_i^2})\\
+			&=2\mathbf{x}
+		\end{align*}
+		
+		\item
+		\begin{align*}
+			\mathbf{\nabla}f(\mathbf{x})
+			&=\mathbf{\nabla}(\mathbf{y^{\top}y-y^{\top}Ax-x^{\top}A^{\top}y+x^{\top}A^{\top}Ax})\\
+			&=\mathbf{-(y^{\top}A)^{\top}-A^{\top}y+2A^{\top}Ax}\\
+			&=\mathbf{-2A^{\top}y+2A^{\top}Ax}
+		\end{align*}
+		
+		\item ~\\
+		$x_{ij}$ is the element of matrix $\mathbf{X}$,\\ $X_{ij}$ is the cofactor of $x_{ij}$, \\$\mathbf{X^*}$ is the adjoint matrix of $\mathbf{X}$.
+		\begin{align*}
+			(\mathbf{\nabla}f(\mathbf{x}))_{ij}
+			&=(\mathbf{\nabla}(det(\mathbf{X})))_{ij}\\
+			&=\frac{\partial (det(\mathbf{X}))}{\partial x_{ij}}\\
+			&=X_{ij}\\
+			\therefore \mathbf{\nabla}f(\mathbf{x})
+			&=\mathbf{(X^{*})^{\top}}\\
+			&=det(\mathbf{X})(\mathbf{X^{-1}})^{\top}~~~~~~~~~~~\blacksquare
+		\end{align*}
+	\end{enumerate}
+
+\end{solution}
+
+
+\newpage
+
+
+\begin{exercise}[Linear regression \textnormal{20pts}]
+	Consider a data set $\{ (x_i ,y_i) \}_{i=1}^{n}$, where $x_i,y_i\in \mathbb{R}$. 
+	\begin{enumerate}
+	    \item If we want to fit the data by a linear model
+	        \begin{align}\label{eqn:linear}
+	            y =  w_0 + w_1 x,
+	        \end{align}
+	        please find $\hat{w}_0$ and $\hat{w}_1$ by the least squares approach (you need to find expressions of $\hat{w}_0$ and $\hat{w}_1$ by $\{ (x_i ,y_i) \}_{i=1}^{n}$, respectively).
+	    \item \textbf{Programming Exercise} We provide you a data set $\{ (x_i ,y_i) \}_{i=1}^{30}$. Consider the model in (\ref{eqn:linear}) and the one as follows:
+	        \begin{align}\label{eqn:linear-quadratic}
+	            y =  w_0 + w_1 x+ w_2 x^2. 
+	        \end{align}
+	        Which model do you think fits better the data? Please detail your approach first and then implement it by your favorite programming language. The required output includes 
+	        \begin{enumerate}
+	            \item your detailed approach step by step; 
+	            \item your code with detailed comments according to your planned approach; 
+	            \item a plot showing the data and the fitting models; 
+	            \item the model you finally choose [$\hat{w}_0$ and $\hat{w}_1$ if you choose the model in (\ref{eqn:linear}), or $\hat{w}_0$, $\hat{w}_1$, and $\hat{w}_2$ if you choose the model in (\ref{eqn:linear-quadratic})].
+	        \end{enumerate}
+	\end{enumerate}
+
+\end{exercise}
+
+\begin{solution}
+	\textbf{Exercise 5}
+	\begin{enumerate}
+		\item
+		\begin{align*}
+ 			\mathbf{y}&=(y_1,y_2,\dots,y_n)^{\top}\\
+ 			\mathbf{A}&=
+			\begin{pmatrix}
+				1 & 1 & \dots & 1\\
+				x_1 & x_2 & \dots & x_n
+			\end{pmatrix}^{\top}\\
+ 			\mathbf{w}&=
+			\begin{pmatrix}
+				w_0 & w_1
+			\end{pmatrix}^{\top}\\
+			Let~~\mathbf{\nabla}(\begin{Vmatrix}
+								\mathbf{y-Aw}
+			                \end{Vmatrix}^2)
+			&=\mathbf{-2A^{\top}y+2A^{\top}Aw}=0\\
+			\mathbf{\hat{w}}&=\mathbf{(A^{\top}A)^{-1}A^{\top}y}\\
+			\mathbf{A^{\top}A}&=
+			\begin{pmatrix}
+				n & \sum\limits_{i=0}^n{x_i}\\
+				\sum\limits_{i=0}^n{x_i} & \sum\limits_{i=0}^n{x_i^2}
+			\end{pmatrix}\\
+			\mathbf{(A^{\top}A)^{-1}}
+			&=\frac{1}{det(\mathbf{A^{\top}A})}
+			\begin{pmatrix}
+				\sum\limits_{i=0}^n{x_i^2} & -\sum\limits_{i=0}^n{x_i}\\
+				-\sum\limits_{i=0}^n{x_i} & n
+			\end{pmatrix}\\
+			&=\frac{1}{n\sum\limits_{i=0}^n{x_i^2}-(\sum\limits_{i=0}^n{x_i})^2}
+			\begin{pmatrix}
+				\sum\limits_{i=0}^n{x_i^2} & -\sum\limits_{i=0}^n{x_i}\\
+				-\sum\limits_{i=0}^n{x_i} & n
+			\end{pmatrix}\\
+			\mathbf{(A^{\top}A)^{-1}A^{\top}y}
+			&=\frac{1}{n\sum\limits_{i=1}^n{x_i^2}-(\sum\limits_{i=0}^n{x_i})^2}
+			\begin{pmatrix}
+				\sum\limits_{i=0}^n{x_i^2} & -\sum\limits_{i=0}^n{x_i}\\
+				-\sum\limits_{i=0}^n{x_i} & n
+			\end{pmatrix}
+			\begin{pmatrix}
+				\sum\limits_{i=1}^n{y_i}\\
+				\sum\limits_{i=1}^n{x_iy_i}
+			\end{pmatrix}\\
+			&=\frac{1}{n\sum\limits_{i=1}^n{x_i^2}-(\sum\limits_{i=0}^n{x_i})^2}
+			\begin{pmatrix}
+				\sum\limits_{i=0}^n{x_i^2}\sum\limits_{i=1}^n{y_i}-\sum\limits_{i=0}^n{x_i}\sum\limits_{i=1}^n{x_iy_i}\\
+				n\sum\limits_{i=1}^n{x_iy_i}-\sum\limits_{i=0}^n{x_i}\sum\limits_{i=1}^n{y_i}
+			\end{pmatrix}\\
+			i.e. ~\\
+			\begin{pmatrix}
+				\hat{\omega}_0\\
+				\hat{\omega}_1
+			\end{pmatrix}
+			&=
+			\begin{pmatrix}
+				\frac{\sum\limits_{i=0}^n{x_i^2}\sum\limits_{i=1}^n{y_i}-\sum\limits_{i=0}^n{x_i}\sum\limits_{i=1}^n{x_iy_i}}{n\sum\limits_{i=1}^n{x_i^2}-(\sum\limits_{i=0}^n{x_i})^2}\\\\
+				\frac{n\sum\limits_{i=1}^n{x_iy_i}-\sum\limits_{i=0}^n{x_i}\sum\limits_{i=1}^n{y_i}}{n\sum\limits_{i=1}^n{x_i^2}-(\sum\limits_{i=0}^n{x_i})^2}
+			\end{pmatrix}
+		\end{align*}
+		\item
+		\begin{enumerate}
+			\item 
+			\begin{itemize}
+			 \item Step 1: load data.
+			 \item Step 2: choose linear model or quadratic model, calculate matrix $\mathbf{A}$ in 1.
+			 \item Step 3: calculate $\mathbf{w}$.
+			 \item Step 4: calculate goodness of fit to compare the two model.
+			 \item Step 5: plot raw data and regression function.
+			\end{itemize}
+			
+			\item
+			Codes are in file `regression.py'. Figure in `linear.pdf' and `quadratic.pdf'.
+			
+			\item comparison of linear regression and quadratic regression
+			\begin{figure}[H]
+				\begin{minipage}{0.45\linewidth}
+				 \centering
+				 \includegraphics[width=9cm,height=6cm]{linear.pdf}
+				\end{minipage}
+				\hfill
+				\begin{minipage}{0.45\linewidth}
+				\centering
+				 \includegraphics[width=9cm,height=6cm]{quadratic.pdf}
+				\end{minipage}
+			\end{figure}
+			
+			\item
+			As we can see,\\
+			For linear regression: $R^2=0.8149$.\\
+			For quadratic regression: $R^2=0.8409>0.8149$.\\\\
+			Inconclusion, quadratic model makes a better fitting.\\
+			$y=\omega_0+\omega_1x+\omega_2x^2$, where $\omega_0=1.0296,~\omega_1=0.3861,~\omega_2=-0.1422$
+			
+		\end{enumerate}
+		
+	\end{enumerate}
+\end{solution}
+\newpage
+
+
+
+
+\begin{exercise}[Projection \textnormal{30pts}]
+	Let $\mathbf{A}\in\mathbb{R}^{m\times n}$ and $\mathbf{x} \in \mathbb{R}^m$. Define
+	\begin{align*}
+	    \proj{\mathbf{x}}{\mathbf{A}} = \argmin_{\mathbf{z}\in\mathbb{R}^m}\,\{\|\mathbf{x}-\mathbf{z}\|_2: \mathbf{z}\in\mathcal{C}(\mathbf{A})\}.   
+	\end{align*}
+    We call $\proj{\mathbf{x}}{\mathbf{A}}$ the projection of the point $\mathbf{x}$ onto the column space of $\mathbf{A}$. 
+    \begin{enumerate}
+        \item Please prove that $\mathbf{P}_{\mathbf{A}}(\mathbf{x})$ is unique for any $\mathbf{x} \in \mathbb{R}^m$. 
+        \item Let $\mathbf{v}_i \in \mathbb{R}^n$, $i=1,\ldots,d$ with $d\leq n$, which are linearly independent.
+            \begin{enumerate}
+		        \item For any $\mathbf{w}\in \mathbb{R}^n$, please find $\proj{\mathbf{w}}{\mathbf{v}_1}$, which is the projection of $\mathbf{w}$ onto the subspace spanned by $\mathbf{v}_1$.  
+		        \item Please show $\proj{\cdot}{\mathbf{v}_1}$ is a linear map, i.e.,
+		            \begin{align*}
+		                \proj{\alpha\mathbf{u}+\beta\mathbf{w}}{\mathbf{v}_1}=\alpha\proj{\mathbf{u}}{\mathbf{v}_1} + \beta \proj{\mathbf{w}}{\mathbf{v}_1},
+		            \end{align*}
+		            where $\alpha,\beta\in\mathbb{R}$ and $\mathbf{w}\in\mathbb{R}^n$.
+		        \item Please find the projection matrix corresponding to the linear map $\proj{\cdot}{\mathbf{v}_1}$, i.e., find the matrix $\mathbf{H}_1\in\mathbb{R}^{n\times n}$ such that
+		            \begin{align*}
+		                 \proj{\mathbf{w}}{\mathbf{v}_1}=\mathbf{H}_1\mathbf{w}.
+		            \end{align*}
+		        \item Let $\mathbf{V}=(\mathbf{v}_1,\ldots,\mathbf{v}_d)$. 
+		            \begin{enumerate}
+		                \item For any $\mathbf{w}\in \mathbb{R}^n$, please find $\proj{\mathbf{w}}{\mathbf{V}}$ and the corresponding projection matrix $\mathbf{H}$.
+		                \item Please find $\mathbf{H}$ if we further assume that $\mathbf{v}_i^{\top}\mathbf{v}_j=0$, $\forall\,i\neq j$.
+		            \end{enumerate}
+	        \end{enumerate}
+	        
+        \item  
+            \begin{enumerate}
+                \item Suppose that 
+                    \begin{align*}
+                        \mathbf{A} = \left[
+                        \begin{matrix}
+                            1 & 0\\
+                            0 & 1
+                        \end{matrix}
+                        \right] .
+                    \end{align*}
+                     What are the coordinates of $\mathbf{P}_{\mathbf{A}}(\mathbf{x})$ with respect to the column vectors in $\mathbf{A}$ for any $\mathbf{x} \in \mathbb{R}^m$? Are the coordinates unique?
+                \item Suppose that
+                    \begin{align*}
+                        \mathbf{A} = \left[
+                            \begin{matrix}
+                                1 & 2\\
+                                1 & 2
+                            \end{matrix}
+                        \right] .
+                    \end{align*}
+                    What are the coordinates of $\mathbf{P}_{\mathbf{A}}(\mathbf{x})$ with respect to the column vectors in $\mathbf{A}$ for any $\mathbf{x} \in \mathbb{R}^m$? Are the coordinates unique?
+            \end{enumerate}
+        
+	   \item A matrix $\mathbf{P}$ is called a projection matrix if $\mathbf{P}\mathbf{x}$ is the projection of $\mathbf{x}$ onto $\mathcal{C}(\mathbf{P})$ for any $\mathbf{x}$.
+	        \begin{enumerate}
+	         %\item Let $\lambda$ be the eigenvalue of $\mathbf{P}$. Show that $\lambda$ is either $1$ or $0$. (\emph{Hint: you may want to figure out what are the eigenspaces corresponding to $\lambda=1$ and $\lambda=0$, respectively.})
+	            \item Let $\lambda$ be the eigenvalue of $\mathbf{P}$. Show that $\lambda$ is either $1$ or $0$. (\emph{Hint: you may want to figure out what the eigenspaces corresponding to $\lambda=1$ and $\lambda=0$ are, respectively.})
+	            \item Show that $\mathbf{P}$ is a projection matrix if and only if $\mathbf{P}^2 = \mathbf{P}$ and $\mathbf{P}$ is symmetric.
+	        \end{enumerate}
+	   
+
+	\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+	\textbf{Exercise 6}
+	\begin{enumerate}
+		\item
+		$\forall \mathbf{x} \in \mathbb{R}^m $,
+			\begin{align*}
+				\proj{\mathbf{x}}{\mathbf{A}} &= \argmin_{\mathbf{z}\in\mathbb{R}^m}\,\{\|\mathbf{x}-\mathbf{z}\|_2: \mathbf{z}\in\mathcal{C}(\mathbf{A})\}\\
+				&= \argmin_{\mathbf{z}\in\mathbb{R}^m}\,\{\|\mathbf{x}-\mathbf{A\bm{\alpha}}\|_2: \bm{\alpha} \in \mathbb{R}^n\}
+			\end{align*}
+			The formation of $\proj{\mathbf{x}}{\mathbf{A}}$ is the same as  Least Squared Method. Using the solution in \textbf{Exercise 5}, we get that $\proj{\mathbf{x}}{\mathbf{A}}$ is minimized if and only if:
+			\begin{align*}
+				\bm{\alpha}&=\mathbf{(A^{\top}A)^{-1}A^{\top}x}
+			\end{align*}
+			Inconclusion, $\proj{\mathbf{x}}{\mathbf{A}}$ is unique and its expression is:
+			\begin{align*}
+				\proj{\mathbf{x}}{\mathbf{A}}&=
+				\mathbf{A(A^{\top}A)^{-1}A^{\top}x}.
+			\end{align*}
+			
+			\item
+			\begin{enumerate}
+				\item
+				It is a specific condition of what we proofed in 1.
+				\begin{align*}
+					\proj{\mathbf{w}}{\mathbf{v}_1}&=\frac{\mathbf{v}_1^{\top}\mathbf{w}}{\mathbf{v}_1^{\top}\mathbf{v}_1}\mathbf{v}_1.
+				\end{align*}
+				
+				\item
+				\begin{align*}
+					\proj{\alpha\mathbf{u}+\beta\mathbf{w}}{\mathbf{v}_1}
+					&=\frac{\mathbf{v}_1^{\top}\mathbf{(\alpha u+\beta w)}}{\mathbf{v}_1^{\top}\mathbf{v}_1}\mathbf{v}_1\\
+					&=\alpha\frac{\mathbf{v}_1^{\top}\mathbf{u}}{\mathbf{v}_1^{\top}\mathbf{v}_1}\mathbf{v}_1+\beta\frac{\mathbf{v}_1^{\top}\mathbf{w}}{\mathbf{v}_1^{\top}\mathbf{v}_1}\mathbf{v}_1\\
+					&=\alpha\proj{\mathbf{u}}{\mathbf{v}_1} + \beta \proj{\mathbf{w}}{\mathbf{v}_1}.
+				\end{align*}
+				
+				\item
+				\begin{align*}
+					\proj{\mathbf{w}}{\mathbf{v}_1}
+					&=(\frac{\mathbf{v}_1^{\top}\mathbf{w}}{\mathbf{v}_1^{\top}\mathbf{v}_1})\mathbf{v}_1=\frac{\mathbf{v}_1\mathbf{v}_1^{\top}}{\mathbf{v}_1^{\top}\mathbf{v}_1}\mathbf{w}.\\
+					\mathbf{H}_1&=\frac{\mathbf{v}_1\mathbf{v}_1^{\top}}{\mathbf{v}_1^{\top}\mathbf{v}_1}.
+				\end{align*}
+				
+				\item
+				\begin{enumerate}
+					\item
+					Based on the expression of projection in 1(b) we have already got, it is obvious that:
+					\begin{align*}
+						\proj{\mathbf{w}}{\mathbf{V}}&=
+						\mathbf{V(V^{\top}V)^{-1}V^{\top}w}.\\
+						\mathbf{H}&=\mathbf{V(V^{\top}V)^{-1}V^{\top}}.
+					\end{align*}
+					
+					\item
+					$\mathbf{V^\top V}$ is a diagonal matrix. Let $\lambda_i=\mathbf{v}_i^\top\mathbf{v}_i\neq 0,~ i=1,2,\dots,d.$\\
+					Then we have 
+					\begin{align*}
+						\mathbf{(V^\top V)^{-1}}&=diag(\frac{1}{\lambda_1},\frac{1}{\lambda_2},\dots,\frac{1}{\lambda_d})\\
+						\mathbf{H}
+						&=(\mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_d)~diag(\frac{1}{\lambda_1},\frac{1}{\lambda_2},\dots,\frac{1}{\lambda_d})\mathbf{V^\top}\\
+						&=\begin{pmatrix}\frac{\mathbf{v}_1}{\lambda_1},\frac{\mathbf{v}_2}{\lambda_2},\dots,\frac{\mathbf{v}_d}{\lambda_d}\end{pmatrix}\mathbf{V^\top}\\
+						&=\begin{pmatrix}
+							\frac{\mathbf{v}_1}{\lambda_1},\frac{\mathbf{v}_2}{\lambda_2},\dots,\frac{\mathbf{v}_d}{\lambda_d}
+						\end{pmatrix}
+						\begin{pmatrix}
+							\mathbf{v_1^\top}\\
+							\mathbf{v_2^\top}\\
+							\dots\\
+							\mathbf{v_3^\top}
+						\end{pmatrix}\\
+						&=\sum_{i=1}^d{\frac{\mathbf{v}_i\mathbf{v}_i^\top}{\lambda_i}}\\
+						&=\sum_{i=1}^d{\frac{\mathbf{v}_i\mathbf{v}_i^\top}{\mathbf{v}_i^\top\mathbf{v}_i}}. ~~~~~~~~(Attention, \mathbf{v}~is~column~vector)
+					\end{align*}
+			\end{enumerate}
+			
+			\end{enumerate}
+			\item
+			\begin{enumerate}
+				\item
+				According to 2. (d). ii, let
+				\begin{align*}
+					\mathbf{v}_1&=(1, 0)^\top,~~~\mathbf{v}_2=(0,1)\\
+					\proj{\mathbf{x}}{\mathbf{A}}&=
+					\begin{pmatrix}
+						1&0\\
+						0&0
+					\end{pmatrix}\mathbf{x}
+					+
+					\begin{pmatrix}
+						0&0\\
+						0&1
+					\end{pmatrix}\mathbf{x}
+					=\mathbf{Ix}=\mathbf{x}\\
+					\proj{\mathbf{x}}{\mathbf{A}}&=(x_1,x_2),~~~~respective~ to~ the~ column~ vectors~ in~ \mathbf{A}
+				\end{align*}
+				It is unique.
+				\item
+				\begin{align*}
+					\proj{\mathbf{x}}{\mathbf{A}}
+					&=\mathbf{A(A^{\top}A)^{-1}A^{\top}x}\\
+					&=
+					\begin{pmatrix}
+					   1&2\\1&2
+					\end{pmatrix}(
+					\begin{pmatrix}
+						1&1\\2&2
+					\end{pmatrix}
+					\begin{pmatrix}
+					  1&2\\1&2
+					\end{pmatrix})^{-1}
+					\begin{pmatrix}
+						1&1\\2&2
+					\end{pmatrix}\mathbf{x}
+					&=
+					\begin{pmatrix}
+						1
+					\end{pmatrix}
+				\end{align*}
+
+			\end{enumerate}
+
+	\end{enumerate}
+
+\end{solution}
+\newpage
+
+
+
+
+% \begin{exercise}[Linear Regression by Maximum Likelihood  \textnormal{5pts}]
+% Given a full rank matrix $\mathbf{X}\in \mathbb{R}^{n\times (D+1)}$ and $\mathbf{y}\in \mathbb{R}^n$, where $\mathbf{X}$ has full rank, we suppose that $$
+% \mathbf{y} = \mathbf{X}\mathbf{w} + \epsilon,
+% $$
+% where $\epsilon \sim \mathcal{N}(\mathbf{0},\sigma^2 \mathbf{I})$, $\mathbf{0}\in \mathbb{R}^n$ and $\mathbf{I}\in \mathbb{R}^{n\times n}$. Please find $\hat{\mathbf{w}}$ that can maximize the joint density (likelihood) of $\mathbf{y}$ conditioned on the model parameters and the input variables, that is
+% $$\hat{\mathbf{w}} = \mathop{\mathbf{argmin}}_{\mathbf{w}}p(\mathbf{y}|\mathbf{X}, \mathbf{w}, \epsilon).$$
+% \end{exercise}
+
+
+
+\begin{exercise}[\textnormal{5pts}]
+Given $\mathbf{X}=(\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_d)\in \mathbb{R}^{n\times d}$, please show that:
+\begin{enumerate}
+    \item $\mathbf{X}^{\top}\mathbf{X}$ is always positive semi-definite. Moreover, $\mathbf{X}^{\top}\mathbf{X}$ is positive definite if and only if $\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_d$ are linearly independent.
+    \item $\mathbf{X}^{\top}\mathbf{X} + \lambda \mathbf{I}$ is always invertible, where $\lambda>0$ and $\mathbf{I}\in \mathbb{R}^{d\times d}$ is an identity matrix.  
+\end{enumerate}
+
+
+\end{exercise}
+
+\begin{solution}
+	\textbf{Exercise 7}
+	\begin{enumerate}
+		\item
+		$\forall \mathbf{w} \in \mathbb{R}^d,~\mathbf{w}\neq 0$, we have $\mathbf{w^\top X^\top X w}=\|\mathbf{Xw}\|_2^2\geqslant 0$
+		\begin{itemize}
+			\item  
+			$\Rightarrow$:
+			\begin{align*}
+				&\mathbf{X^\top X} \text{ is positive  define} \\
+				&\Rightarrow\forall \mathbf{w} \in \mathbb{R}^d,~\mathbf{w}\neq 0, \text{ we have }\mathbf{w^\top X^\top X w}=\|\mathbf{Xw}\|_2^2> 0 ~~~~~~~~~~~~~~\\
+				&\Rightarrow\|\mathbf{Xw}\|_2^2=0 \text{, if and only if } \mathbf{w}=0\\
+				&\Rightarrow \mathbf{Xw}=\sum_{i=1}^d{w_i\mathbf{x}_i}=0\text{ if and only if }\mathbf{w=0}\\
+				&\Rightarrow\mathbf{(x_1,x_2,\dots,x_d)}\text{ are linearly independent. }
+			\end{align*}
+			
+			\item
+			$\Leftarrow$:
+			\begin{align*}
+				&\mathbf{(x_1,x_2,\dots,x_d)}\text{ are linearly independent }\\
+				&\Rightarrow  \mathbf{Xw}=\sum_{i=1}^d{w_i\mathbf{x}_i}=0 \text{, if and only if }\mathbf{w=0},\text{ where } \mathbf{w}\in \mathbb{R}^d.~~~~~~~\\
+				&\Rightarrow \forall \mathbf{w}\in\mathbb{R}^d,~\mathbf{w}\neq 0, \mathbf{Xw}\neq 0\\
+				&\Rightarrow \forall \mathbf{w}\in\mathbb{R}^d,~\mathbf{w}\neq 0,\| \mathbf{Xw}\|_2^2> 0\\
+ 				&\Rightarrow \mathbf{X^\top X} \text{ ,is positive define.}
+			\end{align*}
+		\end{itemize}
+		
+		\item
+		$\forall \mathbf{w}\in\mathbb{R}^d, \mathbf{w}\neq 0,\mathbf{w^{\top}(X^{\top}X+\lambda I)w}=\|\mathbf{Xw}\|_2^2+\lambda\|\mathbf{w}\|_2^2>0.$\\
+		$\therefore \mathbf{X^{\top}X+\lambda I}$ is positive define.\\
+		$\therefore$ All eigenvalues are positive. i.e. $det(\mathbf{X^{\top}X+\lambda I})>0\\
+		\therefore\mathbf{X^{\top}X+\lambda I}$ is invertible.
+	\end{enumerate}
+
+\end{solution}
+
+
+\newpage
+
+
+
+\begin{exercise}[Linear Regression by Maximum Likelihood  \textnormal{10pts}]\label{Exe5}
+Suppose that the samples $\{(\mathbf{x}_i,y_i)\}^n_{i=1}$ are i.i.d., where $\mathbf{x}_i =(x_{i,1}, \dots, x_{i,d})^{\top} \in \mathbb{R}^d$  and $y_i \in \mathbb{R}$. For any $i\in \{1,\dots, n\}$, we assume that 
+$$y_i =  w_0 + w_1 x_{i,1} +\dots + w_d x_{i,d} + \epsilon_i,$$
+where $\mathbf{w} = (w_0,w_1,\dots,w_d)^{\top}\in \mathbb{R}^{d+1}$ and $\epsilon_i\sim \mathcal{N}(0,\sigma^2)$. For simplicity, we define $\bar{\mathbf{x}}_i = (1, x_{i,1}, \dots, x_{i,d})^\top$, $ \mathbf{X}=(\bar{\mathbf{x}}_1,\dots,\bar{\mathbf{x}}_n)^\top$, and $\mathbf{y}=(y_1,\dots,y_n)^\top$, where $\mathbf{X}$ has full rank.
+\begin{enumerate}
+    \item Please find the maximum likelihood estimation (MLE) $\hat{\mathbf{w}}$ of the weights $\mathbf{w}$. Specifically, please give the expression of $\hat{w}_0$.
+    \item Please find the MLE of $\sigma$.
+\end{enumerate}
+%find $\hat{\mathbf{w}}$ that can maximize the joint density (likelihood) of $\{y_i\}^n_{i=1}$ conditioned on the model parameters and the input variables, that is
+%$$\hat{\mathbf{w}} = \mathop{\mathbf{argmax}}_{\mathbf{w}}p(y_1, \dots, y_n|\mathbf{x}_1,\dots, \mathbf{x}_n, \mathbf{w}, \sigma).$$
+\end{exercise}
+\begin{solution}
+	\begin{enumerate}
+	 \item 
+	 
+	\end{enumerate}
+
+\end{solution}
+
+\newpage
+
+
+
+
+\begin{exercise}[Multiple outputs linear regression \textnormal{5pts}]
+Suppose that the samples $\{(\mathbf{x}_i,\mathbf{y}_i)\}^n_{i=1}$ are i.i.d., where $\mathbf{x}_i =(x_{i,1}, \dots, x_{i,d})^{\top} \in \mathbb{R}^{d}$  and $\mathbf{y}_i = (y_{i,1}, \dots, y_{i,p})^{\top} \in \mathbb{R}^{p}$. We define $\bar{\mathbf{x}}_i = (1 , x_{i,1} ,\dots , x_{i,d})^{\top} $.  We assume that 
+\begin{align*}
+    p(\mathbf{y}_i|\mathbf{x}_i, \mathbf{W}, \sigma ) = \mathcal{N} ( \mathbf{W}^{\top} \bar{\mathbf{x}}_i  , \sigma^2 \mathbf{I}),
+\end{align*}
+where $\mathbf{W} \in \mathbb{R}^{(d+1) \times p}$ and $\mathbf{I} \in \mathbb{R}^{p \times p}$ is an identity matrix.
+For simplicity, we assume that $\mathbf{X} = (\bar{\mathbf{x}}_1 , \dots, \bar{\mathbf{x}}_n)^{\top}$ has full rank.
+
+\begin{enumerate}
+    \item Please find the maximum likelihood estimation (MLE) $\hat{\mathbf{W}}$ of the weights $\mathbf{W}$. 
+    \item Please find the relation between $\hat{\mathbf{W}}$ and $\hat{\mathbf{w}}$ in Exercise \ref{Exe5}.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+    
+\end{solution}
+
+
+%\begin{exercise}[Multiple outputs linear regression %\textnormal{10pts}]
+
+%Given a data set $\{(\mathbf{x}_i, %\mathbf{y}_i)_{i=1}^n\}$, where $\mathbf{x}_i \in %\mathbb{R}^{m}$ and $\mathbf{y}_i \in %\mathbb{R}^{p}$. Please solve the problem
+%\begin{align}\label{eq2}
+%   \hat{\mathbf{W}} =  %\mathop{\textbf{argmin}}_{\mathbf{W} \in %\mathbb{R}^{p\times m}} \|\mathbf{W} \mathbf{X} - %\mathbf{Y}\|_{F},
+%\end{align}
+%where $\mathbf{Y} = %(\mathbf{y}_1,\dots,\mathbf{y}_n)$, $\mathbf{X} = %(\mathbf{x}_1,\dots,\mathbf{x}_n)$ and $\mathbf{X}$ %has full rank.
+
+%\end{exercise}
+
+%\begin{solution}
+    
+%\end{solution}
+
+
+%find $\hat{\mathbf{w}}$ that can maximize the joint density (likelihood) of $\{y_i\}^n_{i=1}$ conditioned on the model parameters and the input variables, that is
+%$$\hat{\mathbf{w}} = \mathop{\mathbf{argmax}}_{\mathbf{w}}p(y_1, \dots, y_n|\mathbf{x}_1,\dots, \mathbf{x}_n, \mathbf{w}, \sigma).$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
