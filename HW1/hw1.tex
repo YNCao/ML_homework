@@ -347,6 +347,40 @@ where $\mathbf{y} \in \mathbb{R}^{n}$, $\mathbf{w} \in \mathbb{R}^{d}$, and $\ma
 	\textbf{Exercise 2}
 	\begin{enumerate}
 	 \item 
+	 \begin{enumerate}
+		\item 
+		\[\mathbf{X}=\begin{pmatrix}
+						1&2\\3&4
+					\end{pmatrix},~~~~
+		\mathbf{y}=\begin{pmatrix}
+					5\\6
+				\end{pmatrix}\]
+	
+		\item
+		\[\mathbf{X}=\begin{pmatrix}
+						1&2\\3&4\\0&0
+					\end{pmatrix},~~~~
+		\mathbf{y}=\begin{pmatrix}
+					5\\6\\7
+				\end{pmatrix}\]
+				
+		\item
+		\[\mathbf{X}=\begin{pmatrix}
+						1&2&7\\3&4&8
+					\end{pmatrix},~~~~
+		\mathbf{y}=\begin{pmatrix}
+					5\\6
+				\end{pmatrix}\]
+	 \end{enumerate}
+	
+	 \item
+	 Let $\mathbf{x}_i$ be the column vector of matrix $\mathbf{X}$
+	 \[\mathbf{y=Xw=(x_1,x_2,\dots, x_d)}w=\sum_{i=1}^d{w_i \mathbf{x}_i}\]
+	 if $\rank{\mathbf{X}}=\rank{\mathbf{X,y}}$, it means $\mathbf{y}$ is in the column space of $\mathbf{X}$, i.e. it can be expressed as a linear combination of the column vector of $\mathbf{X}$, which means equation (2) has a solution.
+	 
+	 Besides, $\mathbf{X}$ has full column rank, which means $\mathbf{x}_i$ are all linearly independent, i.e. the solution is unique.
+	 
+	 \item
 	 
 	\end{enumerate}
 
@@ -866,7 +900,33 @@ where $\mathbf{w} = (w_0,w_1,\dots,w_d)^{\top}\in \mathbb{R}^{d+1}$ and $\epsilo
 	\begin{enumerate}
 		\item
 		\[\mathbf{y=Xw+\epsilon}\]
+		\[L(\mathbf{w})=p(\mathbf{y}\vert\mathbf{X,w,\sigma})=\prod_{i=1}^n{p(y_i\vert \mathbf{x_i,w,\sigma})}\]
+		\begin{align*}
+			\log L(\mathbf{w})
+			&=\sum_{i=1}^n{\log\left(\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{-\frac{1}{2\sigma^2}(y_i-f(\mathbf{x;w}))^2\right\}\right)}\\
+			&=-\frac{n}{2}\log\left(2\pi\right)-n\log\sigma-\frac{1}{2\sigma^2}\Vert\mathbf{y-Xw}\Vert^2.
+		\end{align*}
+		\[\left.\frac{\partial\log L(\mathbf{w})}{\partial\mathbf{w}}\right|_{\mathbf{w}=\hat{\mathbf{w}}_{ML}}=\frac{1}{\sigma^2}\left(\mathbf{X^{\top}y-X^{\top}X}\hat{\mathbf{w}}_{WL}\right)=0\]
+		\[\hat{\mathbf{w}}_{WL}=\mathbf{(X^{\top}X)^{-1}X^{\top}y}\]\\
+		\[\hat{\mathbf{w}}_{WL}=
+		\begin{pmatrix}
+			n & \sum\limits_{i=1}^n{x_{i,1}}&\dots&\sum\limits_{i=1}^n{x_{i,d}}\\
+			\sum\limits_{i=1}^n{x_{i,1}}&\sum\limits_{i=1}^n{x_{i,1}^2}&\dots&\sum\limits_{i=1}^n{x_{i,1} x_{i,d}}\\
+			\vdots & \vdots & \ddots & \vdots\\
+			\sum\limits_{i=1}^n{x_{i,d}} & \sum\limits_{i=1}^n{x_{i,1} x_{i,d}} &\dots & \sum\limits_{i=1}^n{x_{i,d}^2}
+		\end{pmatrix}^{-1}
+		\begin{pmatrix}
+			\sum\limits_{i=1}^n{y_i}\\
+			\sum\limits_{i=1}^n{x_{i,1}y_i}\\
+			\vdots\\
+			\sum\limits_{i=1}^n{x_{i,d}y_i}
+		\end{pmatrix}
+		\]\\
+		\[\hat{w}_0=\frac{\sum\limits_{l=0}^d{\left(\mathbf{A}^*_{l,1}\sum\limits_{i=1}^n{x_{i,l}y_i}\right)}}{\det(\mathbf{A})},~~~~where~~\mathbf{A=X^{\top}X},~~x_{i,0}=1\]
+		
 		\item 
+		\[\left.\frac{\partial\log L(\mathbf{\sigma})}{\partial\mathbf{\sigma}}\right|_{\mathbf{w}=\hat{\mathbf{w}}_{ML}}=-\frac{n}{\sigma}+\frac{1}{\sigma^3}\Vert \mathbf{y-X}\hat{\mathbf{w}}_{WL}\Vert^2=0\]
+		\[\hat{\sigma}=\frac{\Vert \mathbf{y-X}\hat{\mathbf{w}}_{WL}\Vert^2}{n}\]
 	\end{enumerate}
 \end{solution}
 
@@ -889,7 +949,18 @@ For simplicity, we assume that $\mathbf{X} = (\bar{\mathbf{x}}_1 , \dots, \bar{\
 \end{enumerate}
 \end{exercise}
 \begin{solution}
-    
+	\textbf{Exercise 9}
+	\begin{enumerate}
+	 \item 
+	 $\hat{\mathbf{w}}$ can be taken as a component of $\hat{\mathbf{W}}$ we can easily get: \\
+	\[\hat{\mathbf{W}}=\mathbf{(X^{\top}X)^{-1}X^{\top}Y}\]
+	where $\mathbf{Y=(y_1,y_2,\dots,y_n)}$
+	
+	\item
+	\[\hat{\mathbf{W}}=(\hat{\mathbf{w}}_1, \hat{\mathbf{w}}_2,\dots,\hat{\mathbf{w}}_n)\]
+	where $\hat{\mathbf{w}}_i=\mathbf{(X^{\top}X)^{-1}X^{\top}y}_i$
+	\end{enumerate}
+
 \end{solution}
 
 
