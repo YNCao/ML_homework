@@ -1,0 +1,387 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Template for homework of Introduction to Machine Learning.
+%
+%  Fill in your name, lecture number, lecture date and body
+%  of homework as indicated below.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[11pt,letter,notitlepage]{article}
+%Mise en page
+\usepackage[left=2cm, right=2cm, lines=45, top=0.8in, bottom=0.7in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{pdfpages} 
+\usepackage{enumitem}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1.5pt}
+\pagestyle{fancy}
+\newcommand\Loadedframemethod{TikZ}
+\usepackage[framemethod=\Loadedframemethod]{mdframed}
+
+\usepackage{amssymb,amsmath}
+\usepackage{amsthm}
+\usepackage{thmtools}
+
+\setlength{\topmargin}{0pt}
+\setlength{\textheight}{9in}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% Define the Exercise environment %%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\mdtheorem[
+topline=false,
+rightline=false,
+leftline=false,
+bottomline=false,
+leftmargin=-10,
+rightmargin=-10
+]{exercise}{\textbf{Exercise}}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% End of the Exercise environment %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Define the Solution Environment %%
+%%%%%%%%%%%%%%%%%%%%%%%
+\declaretheoremstyle
+[
+spaceabove=0pt, 
+spacebelow=0pt, 
+headfont=\normalfont\bfseries,
+notefont=\mdseries, 
+notebraces={(}{)}, 
+headpunct={:\quad}, 
+headindent={},
+postheadspace={ }, 
+postheadspace=4pt, 
+bodyfont=\normalfont, 
+qed=$\blacksquare$,
+preheadhook={\begin{mdframed}[style=myframedstyle]},
+	postfoothook=\end{mdframed},
+]{mystyle}
+
+\declaretheorem[style=mystyle,title=Solution,numbered=no]{solution}
+\mdfdefinestyle{myframedstyle}{%
+	topline=false,
+	rightline=false,
+	leftline=false,
+	bottomline=false,
+	skipabove=-6ex,
+	leftmargin=-10,
+	rightmargin=-10}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% End of the Solution environment %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Definition environment
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+
+%% Homework info.
+\newcommand{\posted}{\text{Mar. 12, 2020}}       			%%% FILL IN POST DATE HERE
+\newcommand{\due}{\text{Mar. 19, 2020}} 			%%% FILL IN Due DATE HERE
+\newcommand{\hwno}{\text{2}} 		           			%%% FILL IN LECTURE NUMBER HERE
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Put your information here %%
+%%%%%%%%%%%%%%%%%%%
+\newcommand{\name}{\text{San Zhang}}  	          			%%% FILL IN YOUR NAME HERE
+\newcommand{\id}{\text{PBXXXXXXXX}}		       			%%% FILL IN YOUR ID HERE
+%%%%%%%%%%%%%%%%%%%%
+%% End of the student's info %%
+%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\proj}[2]{\textbf{P}_{#2} (#1)}
+\newcommand{\lspan}[1]{\textbf{span}  (#1)  }
+\newcommand{\rank}[1]{ \textbf{rank}  (#1)  }
+\newcommand{\dom}{ \textbf{dom}  }
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+% \def\cl{\mathbf{cl}}
+% \def\int{\mathbf{int}}
+% \def\conv{\mathbf{conv}}
+\DeclareMathOperator*{\intp}{\bf int\,}
+\DeclareMathOperator*{\cl}{\bf cl\,}
+\DeclareMathOperator*{\bd}{\bf bd\,}
+\DeclareMathOperator*{\conv}{\bf conv\,}
+\DeclareMathOperator*{\epi}{\bf epi\,}
+
+
+\lhead{
+	\textbf{\name}
+}
+\rhead{
+	\textbf{\id}
+}
+\chead{\textbf{
+		Homework \hwno
+	}}
+	
+	
+	\begin{document}
+		\vspace*{-4\baselineskip}
+		\thispagestyle{empty}
+		
+		
+		\begin{center}
+			{\bf\large Introduction to Machine Learning}\\
+			{Fall 2019}\\
+			University of Science and Technology of China
+		\end{center}
+		
+		\noindent
+		Lecturer: Jie Wang  			 %%% FILL IN LECTURER HERE
+		\hfill
+		Homework \hwno             			
+		\\
+		Posted: \posted
+		\hfill
+		Due: \due
+		\\
+		Name: \name             			
+		\hfill
+		ID: \id						
+		\hfill
+		
+		\noindent
+		\rule{\textwidth}{2pt}
+		
+		\medskip
+		
+		
+		
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%% BODY OF HOMEWORK GOES HERE
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		\textbf{Notice, }to get the full credits, please present your solutions step by step.
+		
+		\begin{exercise}[Limit and Limit Points \textnormal{10pts}]
+			\begin{enumerate}
+				\item Show that $\{\mathbf{x}_n\}$ in $\mathbb{R}^n$ converges to $\mathbf{x}\in \mathbb{R}^n$ if and only if $\{\mathbf{x}_n\}$ is bounded and has a unique limit point $\mathbf{x}$.
+				\item (\textbf{Limit Points of a Set}). Let $C$ be a subset of $\mathbb{R}^n$. A point $\mathbf{x}\in \mathbb{R}^n$ is called a limit point of $C$ if there is a sequence $\{\mathbf{x}_n\}$ in $C$ such that $\mathbf{x}_n\to \mathbf{x}$ and $\mathbf{x}_n \not=\mathbf{x}$ for all positive integers $n$. If $\mathbf{x}\in C$ and $\mathbf{x}$ is not a limit point of $C$, then $\mathbf{x}$ is called an isolated point of $C$. Let $C^\prime$ be the set of limit points of the set $C$. Please show the following statements.
+				\begin{enumerate}
+					\item If $C = (0,1)\cup\{2\}\subset \mathbb{R}$, then $C^\prime =[0,1]$ and $x=2$ is an isolated point of $C$.
+					\item  The set $C^\prime$ is closed.
+					\item  The closure of $C$ is the union of $C^\prime$ and $C$; that is $\cl C=C^\prime \cup C$. Moreover, $C^\prime \subset C$ if and only if $C$ is closed.
+				\end{enumerate}
+			\end{enumerate}
+		\end{exercise}
+		\begin{solution}
+			
+		\end{solution}
+		\newpage
+		
+		\begin{exercise}[Open and Closed Sets \textnormal{10pts}]
+			The norm ball $\{\mathbf{y} \in \mathbb{R}^n:\|\mathbf{y}-\mathbf{x}\|_2<r, \mathbf{x}\in \mathbb{R}^n\}$ is denoted by $B_r(\mathbf{x})$.
+			\begin{enumerate}
+				\item Given a set $C \subset \mathbb{R}^n$, please show the following are equivalent.
+				\begin{enumerate}
+					\item The set $C$ is closed; that is $\cl C=C$. 
+					\item The complement of $C$ is open.
+					\item If $B_{\epsilon}(\mathbf{x})\cap C \not=\emptyset$ for every $\epsilon>0$, then $\mathbf{x}\in C$.
+				\end{enumerate}
+				\item Given $A\subset\mathbb{R}^n$, a set $C\subset A$ is called open in $A$ if $$C=\{\mathbf{x}\in C: B_{\epsilon}(\mathbf{x})\cap A \subset C\,\text{for some}\, \epsilon>0\}.$$
+				A set $C$ is said to be closed in $A$ if $A\setminus C$ is open in $A$. 
+				\begin{enumerate}
+					\item Let $B= [0,1] \cup \{2\}$.  Please show that $[0,1]$ is not an open set in $\mathbb{R}$, while it is both open and closed in $B$.
+					\item Please show that a set $C \subset A$ is open in $A$ if and only if $C=A\cap U$, where $U$ is open in $\mathbb{R}^n$.
+				\end{enumerate}
+				
+			\end{enumerate}
+		\end{exercise}
+		
+		\begin{solution}
+			
+		\end{solution}
+		\newpage
+		
+		
+		
+		\begin{exercise}[Bolzano-Weierstrass Theorem \textnormal{10pts}]
+			\textbf{The Least Upper Bound Axiom}
+			
+			
+			\emph{Any nonempty set of real numbers with an upper bound has a least upper bound. That is, $\sup  C$ always exists for a nonempty bounded above set $C \subset \mathbb{R}$.}
+			
+			Please show the following statements from \textbf{the least upper bound axiom}.
+			\begin{enumerate}
+				\item Let $C$ be a nonempty subset of $\mathbb{R}$ that is bounded above. Prove that $u = \sup C$ if and only if $u$ is an upper bound of $C$ and
+				\begin{align*}
+					\forall\,\epsilon>0,\exists\,a \in C\,\text{ such that }\,a>u-\epsilon.
+				\end{align*}
+				\item  Every bounded sequence in $\mathbb{R}$ has at least one limit point.
+				\item Every bounded sequence in $\mathbb{R}^n$ has at least one limit point.
+			\end{enumerate}
+		\end{exercise}
+		\begin{solution}
+			
+		\end{solution}
+		
+		
+		\newpage
+		
+		
+		
+		\begin{exercise}[Extreme Value Theorem \textnormal{15pts}]
+			\begin{enumerate}
+				\item Show that a set $C \subset \mathbb{R}^n$ is compact if and only if every sequence in $C$ has a subsequence that converges to a point in $C$.
+				\item Let $C$ be a compact subset of $\mathbb{R}^n$ and $f:C \rightarrow \mathbb{R}$ be continuous. Please show that there exist $\mathbf{a},\mathbf{b} \in C$ such that
+				\begin{align*}
+					f(\mathbf{a}) \leq f(\mathbf{x}) \leq f(\mathbf{b}),\,\forall\,\mathbf{x}\in C.
+				\end{align*}
+				\item Let $f: \left[ a,b \right] \rightarrow\mathbb{R}$ be continuous. Show that the range of $f$ is a compact interval $\left[c,d \right]$ for some $c,d \in \mathbb{R}$.
+			\end{enumerate}
+		\end{exercise}
+		\begin{solution}
+			
+		\end{solution}
+		
+		
+		\newpage
+		
+		\begin{exercise}[Convex Sets \textnormal{10pts}]
+			Let $C \subset \mathbb{R}^n$ be a convex set. Please show the following statements.
+			\begin{enumerate}
+				\item The intersection $\cap_{i \in I}C_i$ of any collection $\{ C_i:i\in I \}$ of convex sets is convex.
+				\item Both $\cl C $ and $\intp C $ are convex.
+				\item The set$\{ \mathbf{y}\in\mathbb{R}^m:\mathbf{y}=\mathbf{Ax}+\mathbf{a},\mathbf{x}\in C \}$ is convex, where $\mathbf{A} \in \mathbb{R}^{m \times n}$ and $\mathbf{a} \in \mathbb{R}^m$.
+				\item The set $\{ \mathbf{y}\in\mathbb{R}^m:\mathbf{x}=\mathbf{By}+\mathbf{b},\mathbf{x}\in C \}$ is convex, where $\mathbf{B} \in \mathbb{R}^{n \times m}$ and $\mathbf{b} \in \mathbb{R}^n$.
+			\end{enumerate}
+		\end{exercise}
+		\begin{solution}
+			
+		\end{solution}
+		
+		\newpage
+		
+		\begin{exercise}[Carathéodory’s Lemma \textnormal{5pts}]
+			Suppose that $S \subset \mathbb{R}^n$. Show that every element of $\conv S$ is a convex combination of at most $n + 1$ points of $S$.
+		\end{exercise}
+		\begin{solution}
+			
+		\end{solution}
+		\newpage
+		
+		\begin{exercise}[Strictly Convex Functions \textnormal{10pts}]
+			\begin{enumerate}
+				\item Suppose that $f:\mathbb{R}^n \to \mathbb{R}$ is continuously differentiable. Please show that $f$ is strictly convex if and only if 
+				\begin{align*}
+					f(\mathbf{y})> f(\mathbf{x})+\langle\nabla f(\mathbf{x}),\mathbf{y}-\mathbf{x}\rangle, \forall\, \mathbf{x},\mathbf{y} \in\mathbb{R}^n, \mathbf{x}\not=\mathbf{y}.
+				\end{align*}
+				\item  Suppose that $f:\mathbb{R}^n \to \mathbb{R}$ is twice continuously differentiable. Please show that $f$ is strictly convex if 
+				\begin{align*}
+					\nabla^2 f(\mathbf{x}) \succ 0, \forall\, \mathbf{x} \in \mathbb{R}^n.
+				\end{align*}
+				Is the converse true? Please show your statement.
+			\end{enumerate}
+		\end{exercise}
+		\begin{solution}
+			
+		\end{solution}
+		\newpage
+		
+		\newpage
+		
+		\begin{exercise}[Strongly Convex Functions \textnormal{15pts}]
+			\begin{enumerate}
+				\item  Suppose that $f$ is continuously differentiable. Show that a continuously differentiable function $f$ is strongly convex with parameter $\mu>0$ if and only if 
+				\begin{align*}
+					f(\mathbf{y})\ge f(\mathbf{x})+\langle\nabla f(\mathbf{x}),\mathbf{y}-\mathbf{x}\rangle+\frac{\mu}{2}\|\mathbf{y}-\mathbf{x}\|_2^2, \forall\, \mathbf{x},\mathbf{y}\in\mathbb{R}^n.
+				\end{align*}
+				\item  Suppose that $f$ is twice continuously differentiable and strongly convex with parameter $\mu>0$. Please give an interpretation of $\mu$ in terms of the eigenvalues of $\nabla^2f(\mathbf{x})$.
+				\item (\textbf{Lipschitz Continuity}). Suppose that $f:\mathbb{R}^n\rightarrow\mathbb{R}$ is twice continuously differentiable, and the gradient of $f$ is Lipschitz continuous, i.e.,
+				\begin{align*}
+					\|\nabla f(\mathbf{x})-\nabla f(\mathbf{y})\|_2\le L\|\mathbf{x}-\mathbf{y}\|_2, \forall\,\mathbf{x},\mathbf{y}\in\mathbb{R}^n,
+				\end{align*}
+				where $L>0$ is the Lipschitz constant. Please give an interpretation of $L$ in terms of the eigenvalues of $\nabla^2f(\mathbf{x})$.
+			\end{enumerate}
+		\end{exercise}
+		\begin{solution}
+			
+		\end{solution}
+		
+		
+		
+		\newpage
+		
+		
+		
+		
+		
+		\begin{exercise}[Epigraph \textnormal{10pts}]
+			\begin{enumerate}
+				\item Given a real-valued function $f:\mathbb{R}^n \to \left( - \infty,+\infty \right]$. Show that the following are equivalent:
+				\begin{enumerate}
+					\item The epigraph $\epi f$ is closed.
+					\item The $\alpha$-level set $C_{\alpha}$ is closed for any value of $\alpha$.
+				\end{enumerate}
+				\item Let the function $f:\mathbb{R}^n \times \mathbb{S}^n_{++} \rightarrow \mathbb{R}$ be defined as
+				\begin{align*}
+					f(\mathbf{x},\mathbf{Y}) = \mathbf{x}^{\top}\mathbf{Y}^{-1}\mathbf{x},
+				\end{align*}
+				where $\mathbb{S}^n_{++}$ denotes the set of symmetric positive-definte $n \times n$ matrices. Please show that $f$ is convex.
+			\end{enumerate}
+		\end{exercise}
+		\begin{solution}
+			
+		\end{solution}
+		\newpage
+		
+		
+		\begin{exercise}[ Operations that Preserve Convexity \textnormal{25pts}]
+			\begin{enumerate}
+				\item Let $f:\mathbb{R}^m \rightarrow \left( -\infty,+\infty \right]$ be a given convex function, let $\mathbf{A}\in \mathbb{R}^{m \times n}$ and $\mathbf{b} \in \mathbb{R}^m$, and let
+				\begin{align*}
+					F(\mathbf{x}) = f(\mathbf{Ax+b}),\,\mathbf{x}\in\mathbb{R}^n
+				\end{align*}
+				Show that $F$ is convex.
+				\item Let $f_i:\mathbb{R}^n \rightarrow \left(-\infty,+\infty \right]$, $i=1,\dots,m$ be given convex functions. Show that
+				\begin{align*}
+					F(\mathbf{x}) = \sum_{i=1}^m w_if_i(\mathbf{x})
+				\end{align*}
+				is convex, where $w_i \geq 0,\,i=1,\dots,m$.
+				\item \begin{enumerate}
+					\item Let $f_i:\mathbb{R}^n \rightarrow \left(-\infty,+\infty \right]$ be given convex functions for $i \in I$, where $I$ is an arbitrary index set. Show that
+					\begin{align*}
+						F(\mathbf{x}) = \sup_{i\in I}f_i(\mathbf{x})
+					\end{align*}
+					is convex.
+					\item Consider the function $f(\mathbf{X})=\lambda_{\max}(\mathbf{X})$, with $\dom\, f =\mathbb{S}^n$, where $\lambda_{\max}(\mathbf{X})$ is the largest eigenvalue of $\mathbf{X}$ and $\mathbb{S}^n$ is a set of $n\times n$ real symmetric matrices. Please show that $f$ is a convex function.
+				\end{enumerate}
+				\item Suppose that the training set is $\{(\mathbf{x}_i,y_i)\}_{i=1}^m$, where $\mathbf{x}_i\in\mathbb{R}^d$ is the $i^{th}$ data instance and $y_i\in\mathbb{R}$ is the corresponding label.
+				\begin{enumerate}
+					\item Lasso refers to the regression problem as follows:
+					\begin{align*}
+						\min_{\boldsymbol{\beta}}\,\frac{1}{2m}\|\mathbf{X}\boldsymbol{\beta}-\mathbf{y}\|_2^2+\lambda\|\boldsymbol{\beta}\|_1,
+					\end{align*}
+					where $\mathbf{X}\in\mathbb{R}^{m\times d}$ with its $i^{th}$ row being $\mathbf{x}_i^{\top}$, $\boldsymbol{\beta} \in \mathbb{R}^d$, and $\lambda>0$ is the regularization parameter.
+					\item Logistic regression refers to the problem as follows:
+					\begin{align*}
+						\min_{\mathbf{w},b}\,\frac{1}{m}\sum_{i=1}^m\log\left(1+\exp(-y_i(\langle \mathbf{w},\mathbf{x}_i\rangle-b))\right),
+					\end{align*}
+					where $y_i\in\{1,-1\}$, $\mathbf{w}\in\mathbb{R}^d$, and $b\in\mathbb{R}$.
+				\end{enumerate}
+				Show that the objective functions in the above problems are convex.
+			\end{enumerate}
+		\end{exercise}
+		\begin{solution}
+			
+		\end{solution}
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+	\end{document}
