@@ -96,8 +96,8 @@ preheadhook={\begin{mdframed}[style=myframedstyle]},
 %%%%%%%%%%%%%%%%%%%%
 %% Put your information here %%
 %%%%%%%%%%%%%%%%%%%
-\newcommand{\name}{\text{San Zhang}}  	          			%%% FILL IN YOUR NAME HERE
-\newcommand{\id}{\text{PBXXXXXXXX}}		       			%%% FILL IN YOUR ID HERE
+\newcommand{\name}{\text{Yunning Cao}}  	          			%%% FILL IN YOUR NAME HERE
+\newcommand{\id}{\text{PB16021370}}		       			%%% FILL IN YOUR ID HERE
 %%%%%%%%%%%%%%%%%%%%
 %% End of the student's info %%
 %%%%%%%%%%%%%%%%%%%
@@ -181,7 +181,44 @@ preheadhook={\begin{mdframed}[style=myframedstyle]},
 			\end{enumerate}
 		\end{exercise}
 		\begin{solution}
-			
+            \textbf{Exercise 1}
+            \begin{enumerate}
+                \item 
+               Proof:
+               \begin{itemize}
+                    \item 
+                    \begin{align*}
+                        &\forall \varepsilon >0, ~\exists N, ~s.t. ~\Vert \mathbf{x}_k-\mathbf{x} \Vert <\varepsilon, ~\forall k>N\\
+                        \Rightarrow&\{\mathbf{x}_n\} \text{ is bounded and it has a unique limit point }\mathbf{x}
+                    \end{align*}
+                    
+                    \item
+                    \begin{align*}
+                        &\forall \mathbf{x}_k\in \{\mathbf{x}_n\},~\exists M>0,~s.t.~\Vert \mathbf{x}_k\Vert\leqslant M.\\
+                        \Rightarrow&
+                    \end{align*}
+               \end{itemize}
+               
+               \item
+               \begin{enumerate}
+                    \item
+                    According to the density of real numbers, it is clear: $\forall x \in [0,1],~\exists $ subsequence ${x_n}$ that $x_n\rightarrow x$ and $x_n\neq x$. There exists no such subsequence for element \{2\}. \\
+                    $\therefore C'=[0,1]$, \{2\} is isolated point of C.
+                    
+                    \item
+                    $C'=[0,1],~\mathbf{cl}~C'=[0,1]$, i.e. the closure of C' is equal to C'.
+                    
+                    \item
+                    \begin{itemize}
+                        \item
+                        it is obvious that : $C$ is closed $\Rightarrow~C=\mathbf{cl}C=C'\cup C~\Rightarrow C'\subset C$
+                        \item
+                        $C'\subset C\Rightarrow~\mathbf{cl}C=C'\cup C=C\Rightarrow C$ is closed.
+                    \end{itemize}
+
+               \end{enumerate}
+
+            \end{enumerate}
 		\end{solution}
 		\newpage
 		
@@ -205,7 +242,31 @@ preheadhook={\begin{mdframed}[style=myframedstyle]},
 		\end{exercise}
 		
 		\begin{solution}
-			
+		\textbf{Exercise 2}
+			\begin{enumerate}
+                \item
+                According to definition,(a)$\Leftrightarrow$(b)\\\\
+                the complement of $C\text{ is open}\\
+                \Leftrightarrow \forall \mathbf{x}\in C^c,\mathbf{x}$ is interior point\\
+                $\Leftrightarrow $if $B_{\epsilon}(\mathbf{x})\cap C \not=\emptyset$ for every $\epsilon>0$, then $\mathbf{x}\notin C^c$ i.e. $\mathbf{x}\in C$\\
+                i.e. (b)$\Leftrightarrow$(c)
+                
+                \item
+                \begin{enumerate}
+                    \item
+                    $\forall \varepsilon>0,~ B_{\varepsilon}(1)\cap \mathbb{R}=B_{\varepsilon}(1)$ is not in [0,1] $\Rightarrow$ [0,1] is not an open set in $\mathbb{R}$.\\\\
+                    $\forall x \in [0,1],~\exists \varepsilon>0,~ B_{\varepsilon}(x)\cap B$ is in [0,1] $\Rightarrow$ [0,1] is an open set in $B$.\\
+                    $B\setminus[0,1]=\{2\}$ is open $\Rightarrow$ [0,1] is an closed set in $B$.
+                    
+                    \item
+                    $C=A\cap U \\
+                    \Leftrightarrow \forall\mathbf{x}\in C,\mathbf{x} \in A $ and $\exists \varepsilon>0 , ~s.t.~ B_{\varepsilon}(\mathbf{x})\in U$\\
+                    $\Leftrightarrow\forall \mathbf{x}\in C,~\exists \varepsilon>0 , ~s.t.~ B_{\varepsilon}(\mathbf{x})\in U$, $B_{\varepsilon}(\mathbf{x})\cap A\in U\cap A=C$\\
+                    $\Leftrightarrow C$ is open in $A$.
+                \end{enumerate}
+
+			\end{enumerate}
+
 		\end{solution}
 		\newpage
 		
@@ -227,8 +288,26 @@ preheadhook={\begin{mdframed}[style=myframedstyle]},
 				\item Every bounded sequence in $\mathbb{R}^n$ has at least one limit point.
 			\end{enumerate}
 		\end{exercise}
+		
 		\begin{solution}
-			
+		\textbf{Exercise 3}
+			\begin{enumerate}
+                \item
+                $u=\sup C$\\
+                $\Leftrightarrow$\\
+                $u$ is an upper bound of C,\\
+                if $u'$ is any upper bound of C,$u<u'$.\\
+                $\Leftrightarrow$\\
+                
+                \item
+                Let sequence ${x_n}\in\mathbb{R}$ is bounded, $\forall n, x_n\in[a,b]$.\\
+                find $c\in [a,b]$ that set [a,b] into 2 equal subsets. There is at least one subset that contains a infinite subsequence of ${x_n}$, let the subset be $[a_k,b_k]$. Repeat the process and $|b_k-a_k|\rightarrow0$ we will finally find a limit point $x$ of ${x_n}$.
+                
+                \item
+                Let sequence ${\mathbf{x}_n}\in\mathbb{R}^n$ is bounded, $\forall n, \Vert\mathbf{x}_n\Vert\in[a,b]$.\\
+                find $c\in [a,b]$ that set [a,b] into 2 equal subsets. There is at least one subset that contains a infinite subsequence of ${\mathbf{x}_n}$, let the subset be $[a_k,b_k]$. Repeat the process and $|b_k-a_k|\rightarrow0$ we will finally find a limit point $\mathbf{x}$ of ${\mathbf{x}_n}$.
+            \end{enumerate}
+
 		\end{solution}
 		
 		
@@ -247,7 +326,12 @@ preheadhook={\begin{mdframed}[style=myframedstyle]},
 			\end{enumerate}
 		\end{exercise}
 		\begin{solution}
-			
+			\textbf{Exercise 4}
+			\begin{enumerate}
+                \item
+                
+			\end{enumerate}
+
 		\end{solution}
 		
 		
