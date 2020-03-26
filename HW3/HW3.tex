@@ -1,0 +1,322 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Template for homework of Introduction to Machine Learning.
+%
+%  Fill in your name, lecture number, lecture date and body
+%  of homework as indicated below.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[11pt,letter,notitlepage]{article}
+%Mise en page
+\usepackage[left=2cm, right=2cm, lines=45, top=0.8in, bottom=0.7in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{pdfpages} 
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1.5pt}
+\newcommand\Loadedframemethod{TikZ}
+\usepackage[framemethod=\Loadedframemethod]{mdframed}
+
+\usepackage{amssymb,amsmath}
+\usepackage{amsthm}
+\usepackage{thmtools}
+
+\setlength{\topmargin}{0pt}
+\setlength{\textheight}{9in}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Define math operator %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator*{\argmin}{\bf argmin}
+\DeclareMathOperator*{\relint}{\bf relint\,}
+\DeclareMathOperator*{\dom}{\bf dom\,}
+\DeclareMathOperator*{\intp}{\bf int\,}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setlength{\topmargin}{0pt}
+\setlength{\textheight}{9in}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6in}
+\pagestyle{fancy}
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% Define the Exercise environment %%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\mdtheorem[
+topline=false,
+rightline=false,
+leftline=false,
+bottomline=false,
+leftmargin=-10,
+rightmargin=-10
+]{exercise}{\textbf{Exercise}}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% End of the Exercise environment %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% Define the Problem environment %%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\mdtheorem[
+topline=false,
+rightline=false,
+leftline=false,
+bottomline=false,
+leftmargin=-10,
+rightmargin=-10
+]{problem}{\textbf{Problem}}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% End of the Exercise environment %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Define the Solution Environment %%
+%%%%%%%%%%%%%%%%%%%%%%%
+\declaretheoremstyle
+[
+spaceabove=0pt, 
+spacebelow=0pt, 
+headfont=\normalfont\bfseries,
+notefont=\mdseries, 
+notebraces={(}{)}, 
+headpunct={:\quad}, 
+headindent={},
+postheadspace={ }, 
+postheadspace=4pt, 
+bodyfont=\normalfont, 
+qed=$\blacksquare$,
+preheadhook={\begin{mdframed}[style=myframedstyle]},
+	postfoothook=\end{mdframed},
+]{mystyle}
+
+\declaretheorem[style=mystyle,title=Solution,numbered=no]{solution}
+\mdfdefinestyle{myframedstyle}{%
+	topline=false,
+	rightline=false,
+	leftline=false,
+	bottomline=false,
+	skipabove=-6ex,
+	leftmargin=-10,
+	rightmargin=-10}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% End of the Solution environment %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Homework info.
+\newcommand{\posted}{\text{Mar. 26, 2020}}       			%%% FILL IN POST DATE HERE
+\newcommand{\due}{\text{Apr. 2, 2020}} 			%%% FILL IN Due DATE HERE
+\newcommand{\hwno}{\text{3}} 		           			%%% FILL IN LECTURE NUMBER HERE
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Put your information here %%
+%%%%%%%%%%%%%%%%%%%
+\newcommand{\name}{\text{Yunning Cao}}  	          			%%% FILL IN YOUR NAME HERE
+\newcommand{\id}{\text{PB16021370}}		       			%%% FILL IN YOUR ID HERE
+%%%%%%%%%%%%%%%%%%%%
+%% End of the student's info %%
+%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\proj}[2]{\textbf{P}_{#2} (#1)}
+\newcommand{\lspan}[1]{\textbf{span}  (#1)  }
+\newcommand{\rank}[1]{ \textbf{rank}  (#1)  }
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\DeclareMathOperator*{\cl}{\bf cl\,}
+\DeclareMathOperator*{\bd}{\bf bd\,}
+\DeclareMathOperator*{\conv}{\bf conv\,}
+\DeclareMathOperator*{\epi}{\bf epi\,}
+
+
+\lhead{
+	\textbf{\name}
+}
+\rhead{
+	\textbf{\id}
+}
+\chead{\textbf{
+		Homework \hwno
+}}
+
+
+\begin{document}
+\vspace*{-4\baselineskip}
+\thispagestyle{empty}
+
+
+\begin{center}
+{\bf\large Introduction to Machine Learning}\\
+{Spring 2020}\\
+University of Science and Technology of China
+\end{center}
+
+\noindent
+Lecturer: Jie Wang  			 %%% FILL IN LECTURER HERE
+\hfill
+Homework \hwno             			
+\\
+Posted: \posted
+\hfill
+Due: \due
+\\
+Name: \name             			
+\hfill
+ID: \id						
+\hfill
+
+\noindent
+\rule{\textwidth}{2pt}
+
+\medskip
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BODY OF HOMEWORK GOES HERE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Notice, }to get the full credits, please present your solutions step by step.
+
+
+\begin{exercise}[Local minima of convex function \textnormal{10pts}]
+    Let $f:\mathbb{R}^{n} \to \left( -\infty,+\infty \right]$ be a convex function. Consider the following problem 
+    \begin{align}\label{prob:c_min}
+        \min_{\mathbf{x}\in D}f(\mathbf{x}),
+    \end{align}
+    where $D\subseteq\dom f\subseteq\mathbb{R}^n$ is a convex set.
+    We assume that the problem (\ref{prob:c_min}) is solvable. Then, if $\mathbf{x}$ is a local optimum, it is also a global optimum.
+    \begin{enumerate}
+    	\item Show the above result by NOT using contradiction.
+    	\item Show the above result by contradiction.
+    \end{enumerate}
+\end{exercise}
+\begin{solution}
+
+\end{solution}
+
+
+\newpage
+
+\begin{exercise}[Gradient Descent for Convex Optimization Problems \textnormal{30pts}]
+    Consider the following problem 
+    \begin{align}\label{prob:c_min_gd}
+        \min_{\mathbf{x}}f(\mathbf{x}),
+    \end{align}
+    where $f:\mathbb{R}^{n} \to \left( -\infty,+\infty \right)$ is convex, first order continuously differentiable, and its gradient is Lipschitz continuous with constant $L>0$. Suppose that $f$ can attain its minimum.
+    \begin{enumerate}
+    \item Show that the optimal set $\mathcal{C}=\{\mathbf{y}:f(\mathbf{y})=\min_{\mathbf{x}}f(\mathbf{x})\}$ is closed and convex.
+    \item We define the distance from $\mathbf{x}$ to the optimal set $\mathcal{C}$ by $d(\mathbf{x},\mathcal{C})=\inf_{\mathbf{z}\in\mathcal{C}}\|\mathbf{x}-\mathbf{z}\|_2$. Prove that there exists $\mathbf{z}\in \mathcal{C}$ such that $d(\mathbf{x},\mathcal{C}) = \|\mathbf{x}-\mathbf{z}\|_2$ for any fixed $\mathbf{x}$.
+    \item Consider the problem (\ref{prob:c_min_gd}) and the sequence generated by the gradient descent algorithm with the step size $\alpha \in (0,\frac{2}{L})$. Show that $d(\mathbf{x}_k,\mathcal{C})\rightarrow 0$ as $k\rightarrow\infty$. 
+    \item Consider the problem (\ref{prob:c_min_gd}) and the sequence generated by the gradient descent algorithm. Given $\alpha >0$, suppose that  $\{\mathbf{x}_k\}$ is convergent. Show that $d(\mathbf{x}_k,\mathcal{C})\rightarrow 0$ as $k\rightarrow\infty$.   
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+
+\end{solution}
+
+\newpage
+
+\begin{exercise}[Projection operator \textnormal{30pts}]
+    Consider the following problem 
+    \begin{align}\label{prob:sc_min}
+        \min_{x\in D}f(x),
+    \end{align}
+    where $f:\mathbb{R}^{n} \to \left( -\infty,+\infty \right]$ is continuously differentiable and strongly convex with convexity parameter $\mu>0$. We assume that $D \subseteq \dom f $ is closed and nonempty.
+    \begin{enumerate}
+        \item Show that the problem (\ref{prob:sc_min}) admits a unique solution.
+    \end{enumerate}
+	For a nonempty, closed, and convex set $C\subseteq\mathbb{R}^n$, the projection of an arbitrary point $x\in\mathbb{R}^n$ onto $C$ is defined by
+	\begin{align*}
+	    \proj{\mathbf{x}}{C} = \argmin_{\mathbf{z}\in C}\,\|\mathbf{x}-\mathbf{z}\|_2.
+	\end{align*}
+    We call $\proj{\mathbf{x}}{C}$ the projection of the point $\mathbf{x}$ onto the convex set $C$. 
+    \begin{enumerate}[resume]
+        \item Show that $\proj{\mathbf{x}}{C}$ always exists and is unique.
+        \item Show that $\mathbf{y}=\proj{\mathbf{x}}{C}$ if and only if $\mathbf{y}\in C$ and 
+    		\begin{align*}
+    		\langle \mathbf{z}-\mathbf{y}, \mathbf{x}-\mathbf{y}\rangle\leq0,\,\forall\,\mathbf{z}\in C.
+    		\end{align*}
+    	\item Show that for all $\mathbf{x},\mathbf{y}\in\mathbb{R}^n$,
+    	\begin{align*}
+    		\|\proj{\mathbf{x}}{C}-\proj{\mathbf{y}}{C}\|_2\leq \|\mathbf{x}-\mathbf{y}\|_2.
+    	\end{align*}
+    \end{enumerate}
+\end{exercise}
+\begin{solution}
+
+\end{solution}
+
+\newpage
+
+\begin{exercise}[Projected Gradient Descent \textnormal{30pts}]
+    Consider the problem (\ref{prob:sc_min}). We assume that the feasible set $D \subseteq \dom f$ is closed and nonempty and the gradient of $f$ is Lipschitz with constant $L>0$. A commonly used approach to solve the constrained optimization problem (\ref{prob:sc_min}) is the so-called \emph{projected gradient descent}, in which each iteration improves the current estimation $\mathbf{x}_k$ of the optimum by
+    \begin{align*}
+        \mathbf{x}_{k+1}=\proj{\mathbf{x}_k-\alpha\nabla f(\mathbf{x}_k)}{D},
+    \end{align*}
+    where $\alpha>0$ is the step size.
+    \begin{enumerate}
+        \item Show that
+        \begin{align*}
+            f(\mathbf{y})\ge f(\mathbf{x})-\frac{1}{2\mu}\|\nabla f(\mathbf{x})\|_2^2, \,\forall\, \mathbf{x},\mathbf{y} \in D.
+        \end{align*}
+        \item Consider the problem (\ref{prob:sc_min}) and the sequence generated by the \emph{projected gradient descent} algorithm. Suppose that $\mathbf{x}^*$ is the solution to the problem (\ref{prob:sc_min}).
+        \begin{enumerate}
+            \item Find the range of $\alpha$ such that the function values $f(\mathbf{x}_k)$ converge linearly to $f(\mathbf{x}^*)$.
+            \item When does the (projected) gradient descent always achieve the optimal solution in one iteration wherever the intial point $\mathbf{x}_0$ is?
+        \end{enumerate}
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage
+
+\begin{exercise}[Programming Exercise \textnormal{20pts}]
+    We provide you with a data set, where the number of samples $n$ is $16087$ and the number of features $d$ is $10013$. Suppose that $\textbf{X}\in\mathbb{R}^{n\times d}$ is the input feature matrix and $\textbf{y}\in\mathbb{R}^n$ is the corresponding response vector. We use the linear model to fit the data, and thus we can formulate the optimization problem as 
+    \begin{align}\label{prob:lsm}
+        \arg\min_{\textbf{w}}f(\textbf{w}) = \frac{1}{n}\|\textbf{y}-\bar{\textbf{X}}\textbf{w}\|_2^2,
+    \end{align}
+    where $\bar{\textbf{X}}=(\textbf{1},\textbf{X})\in\mathbb{R}^{n\times(d+1)}$ and $\textbf{w}=(w_0,w_1,\dots,w_{d})^\top\in\mathbb{R}^{d+1}$.
+    Finish the following exercises by programming. You can use your favorite programming language.
+    \begin{enumerate}
+        \item Normalize the columns $\textbf{x}_i$ of $\textbf{X}$ ($1\le i\le d$) as follows:
+        \begin{align*}
+            z_{ij}\leftarrow\frac{x_{ij}-\min (\textbf{x}_i)}{ \max (\textbf{x}_i) -  \min (\textbf{x}_i) },
+        \end{align*}
+        where $x_{ij}$ denotes the $j$th entry of $\textbf{x}_i$. Similarly, $z_{ij}$ denotes the $j$th entry of $\textbf{z}_i \in \mathbb{R}^n$ and $\bar{\textbf{Z}} = (\textbf{1},\textbf{z}_1,\dots,\textbf{z}_d)\in \mathbb{R}^{n\times(d+1)}$. The problem (\ref{prob:lsm}) becomes
+        \begin{align}\label{prob:lsm2}
+            \arg\min_{\textbf{u}}g(\textbf{u}) = \frac{1}{n}\|\textbf{y}-\bar{\textbf{Z}}\textbf{u}\|_2^2,
+        \end{align}
+        where $\textbf{u}=(u_0,u_1,\dots,u_{d})^\top\in\mathbb{R}^{d+1}$.
+        \item Please find the Lipschitz constants of $f(\textbf{w})$ and $g(\textbf{u})$ respectively.
+        \item Use the closed form solution to solve the problem (\ref{prob:lsm2}), and get the solution $\textbf{u}^*$ and the corresponding optimal value $g^* = g(\textbf{u}^*)$.
+        \item Use the gradient descent algorithm to solve the problem (\ref{prob:lsm2}). Stop the iteration until $|g(\textbf{u}_k)-g^*|<0.01$. Please use $\textbf{u}_k$ to recover $\textbf{w}_k$ and plot $g(\textbf{u}_k)$ and $f(\textbf{w}_k)$ versus the iteration step $k$.
+        \item Compare the time cost of the two approaches in 3. and 4.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+
+\end{solution}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

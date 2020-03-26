@@ -10,7 +10,7 @@ y = data[:, 1]
 # Step 2: choose and build model (coefficient matrix)
 # model=1: linear model
 # model=2: quadratic model
-model = 2
+model = 1
 if model == 1:
     A = np.ones((data.shape[0], 2))
     A[:, 1] = x
