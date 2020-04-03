@@ -205,8 +205,25 @@ ID: \id
     	\item Show the above result by contradiction.
     \end{enumerate}
 \end{exercise}
-\begin{solution}
 
+\begin{solution}
+	\textbf{Exercise 1}
+	\begin{enumerate}
+		\item
+		Let $\mathbf{x}^*$ be a local optimum.\\
+		$\Rightarrow\exists \delta>0$ s.t. $\forall \mathbf{y}\in \{\mathbf{y}|\Vert\mathbf{y-x^*}\Vert_2<\delta\},~f(\mathbf{y})>f(\mathbf{x}^*)$ \\
+		$\Rightarrow\forall \mathbf{z} \in \dom f\backslash \{\mathbf{z}|\Vert\mathbf{z-x^*}\Vert_2<\delta\}, \exists \mathbf{y}\in \{\mathbf{y}|\Vert\mathbf{y-x^*}\Vert_2<\delta\}$ and $\theta\in[0,1]$\\ s.t. $\mathbf{y}=(1-\theta)\mathbf{x}^*+\theta\mathbf{z}$ \\
+		$\Rightarrow f(\mathbf{x}^*)\leqslant f(\mathbf{y})=f((1-\theta)\mathbf{x}^*+\theta\mathbf{z})\leqslant (1-\theta)f(\mathbf{x}^*)+\theta f(\mathbf{z})$\\
+		$\Rightarrow f(\mathbf{z})\geqslant f(\mathbf{x}^*)$ i.e. $\mathbf{x}^*$ is also a global optimum.
+		\item
+		Suppose $ \mathbf{x}^* $ be a local optimum but not global optium, i.e. $\exists \delta>0$ s.t. \\$\forall \mathbf{y}\in \{\mathbf{y}|\Vert\mathbf{y-x^*}\Vert_2<\delta\},~f(\mathbf{y})>f(\mathbf{x}^*)$ .\\
+		Suppose that $\mathbf{x}^{**}\neq\mathbf{x}^{*}$ is a global optimum, i.e. $f(\mathbf{x}^{**})<f(\mathbf{x}^*)$.\\
+		Consider $$\mathbf{y}=(1-\theta)\mathbf{x}^*+\theta\mathbf{x}^{**}, \text{ where }\theta = \frac{\delta}{2\Vert\mathbf{x^*-x^{**}}\Vert_2}$$
+		then we have $\Vert\mathbf{y-x^*}\Vert=\delta/2<\delta$, which means $f(\mathbf{y})\geqslant f(\mathbf{x}^*)$.\\
+		On the other hand, by the convexity of function $f$, we also have $$ f(\mathbf{y})=f((1-\theta)\mathbf{x}^*+\theta\mathbf{x}^{**})\leqslant(1-\theta)f(\mathbf{x}^*)+\theta f(\mathbf{x}^{**})\leq f(\mathbf{x}^*), $$
+		which contradicts. Hence we have that there exists no fessible $\mathbf{x}^{**}$ with $f(\mathbf{x}^{**})<f(\mathbf{x}^*)$ i.e. $\mathbf{x}^*$ is also a global optimum.
+		
+	\end{enumerate}
 \end{solution}
 
 
@@ -226,7 +243,18 @@ ID: \id
 \end{enumerate}
 \end{exercise}
 \begin{solution}
-
+	\textbf{Exercise 2}
+	\begin{enumerate}
+		\item 
+		\begin{enumerate}
+			\item convex: \\if there is only one point in $\mathcal{C}$, it is clearly convex. if there are multiple points in $\mathcal{C}$, Suppose $x,y\in\mathcal{C}$ and $x\neq y$, Let $\theta\in(0,1),$ we have
+			$$\text{min}_x f(x)\leqslant f(\theta x+(1-\theta)y)\leqslant\theta f(x)+(1-\theta)f(y)=\text{min}_x f(x)$$
+			i.e. $\text{min}_xf(x)=f(\theta x+(1-\theta)y)$. Thus the points on the segment joining x and y belong to $\mathcal{C}$. it is convex.
+			
+			\item closed: \\
+			
+		\end{enumerate}
+	\end{enumerate}
 \end{solution}
 
 \newpage
@@ -313,7 +341,24 @@ ID: \id
 \end{exercise}
 
 \begin{solution}
-
+	\textbf{Here are some necessary derivations.}
+	\begin{enumerate}
+		\item 
+		\item
+		\begin{align*}
+		&\nabla f(\mathbf{w}) = \frac{2}{n}\left(\bar{\mathbf{X}}^{\top}\bar{\mathbf{X}}\mathbf{w}-\bar{\mathbf{X}}^\top\mathbf{y} \right) \\
+		&\Vert \nabla f(\mathbf{w}_2) - \nabla f(\mathbf{w}_1)\Vert = \frac{2}{n}\Vert\mathbf{S(w_2-w_1)}\Vert\leqslant\frac{2}{n}\Vert\mathbf{S}\Vert\Vert\mathbf{w_2-w_1}\Vert, \text{ where } \mathbf{S}=\bar{\mathbf{X}}^{\top}\bar{\mathbf{X}}.\\
+		&L_f = \frac{2}{n}\Vert\mathbf{S}\Vert=\frac{2}{n}\Vert\mathbf{\bar{X}^\top \bar{X}}\Vert\\
+		&\text{Similarly, } L_g = \frac{2}{n}\Vert \mathbf{\bar{Z}^\top \bar{Z}}\Vert\\
+		&\textbf{*In the codes, we take 2-norm. i.e. the maximal engivalue of } \mathbf{A^\top A}
+		\end{align*}
+		
+		\item
+		$\mathbf{u}=\mathbf{(\bar{Z}^\top \bar{Z})^{-1}\bar{Z}^\top y}$
+		
+		\item
+		$w_i=u_i(max(\mathbf{x}_i)-min(\mathbf{x}_i))$
+	\end{enumerate}
 \end{solution}
 
 

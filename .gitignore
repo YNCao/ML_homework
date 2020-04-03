@@ -1,5 +1,8 @@
-*.aux
+# latex
 *.fdb_latexmk
 *.fls
 *.pdf
 *.gz
+
+# generated data
+*.npy
