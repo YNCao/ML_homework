@@ -46,7 +46,7 @@ alpha = 0.5
 err = 0.01
 i = 0
 uu = [np.zeros((d_, 1))]
-gg = [1/n*(np.linalg.norm(y-np.matmul(Z_, uu[0]), ord=2))**2]
+gg = [1/n*np.linalg.norm(y-np.matmul(Z_, uu[0]), ord=2)**2]
 yy = np.matmul(Z_.T, y)
 
 tt0=time.time()
@@ -56,5 +56,3 @@ while abs(gg[i]-g)>err:
     i += 1
     print('times: ', i,'||measure: ',gg[i],'||err: ',abs(gg[i]-g))
 tt1=time.time()
-
-Z_ = X_
