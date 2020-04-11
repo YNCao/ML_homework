@@ -36,7 +36,7 @@ print('calculating closed form solution...')
 t0 = time.time()
 u1 = np.matmul(np.linalg.inv(ztz),Z_.T)
 u = np.matmul(u1,y)
-g = 1/n*(np.linalg.norm(y-np.matmul(Z_,u), ord=2))**2
+g = 1/n*(np.linalg.norm(y-np.matmul(Z_,u),ord=2))**2
 t1 = time.time()
 print('time consumption: ', t1-t0, 's\n optimal value g*: ', g)
  
@@ -45,7 +45,7 @@ print('time consumption: ', t1-t0, 's\n optimal value g*: ', g)
 alpha = 0.5
 err = 0.01
 i = 0
-uu = [np.zeros((d_, 1))]
+uu = [np.ones((d_, 1))]
 gg = [1/n*np.linalg.norm(y-np.matmul(Z_, uu[0]), ord=2)**2]
 yy = np.matmul(Z_.T, y)
 

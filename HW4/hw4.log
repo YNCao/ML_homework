@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.12)  9 APR 2020 15:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.12)  10 APR 2020 22:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1043,53 +1043,53 @@ This may cause the page layout to be inconsistent, however.
 [2]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 243.
+(mdframed)              on input line 249.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 253.
-Package mdframed Info: Not enough space on this page on input line 253.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 293.
- [3]
+(mdframed)              on input line 259.
+Package mdframed Info: Not enough space on this page on input line 259.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 299.
+ [3]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 314.
-Package mdframed Info: Not enough space on this page on input line 314.
+(mdframed)              on input line 305.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 316.
+(mdframed)              on input line 320.
+Package mdframed Info: Not enough space on this page on input line 320.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 322.
  [4]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 321.
+(mdframed)              on input line 327.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 357.
-Package mdframed Info: Not enough space on this page on input line 357.
+(mdframed)              on input line 363.
+Package mdframed Info: Not enough space on this page on input line 363.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 359.
+(mdframed)              on input line 365.
  [5]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 364.
+(mdframed)              on input line 370.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 387.
-Package mdframed Info: Not enough space on this page on input line 387.
+(mdframed)              on input line 393.
+Package mdframed Info: Not enough space on this page on input line 393.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 390.
+(mdframed)              on input line 396.
  [6] (./hw4.aux) ) 
 Here is how much of TeX's memory you used:
- 25980 strings out of 492623
- 499039 string characters out of 6133289
+ 25982 strings out of 492623
+ 499091 string characters out of 6133289
  557216 words of memory out of 5000000
- 29497 multiletter control sequences out of 15000+600000
+ 29499 multiletter control sequences out of 15000+600000
  541375 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  67i,19n,78p,806b,957s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1108,7 +1108,7 @@ f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2019/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/
 public/amsfonts/symbols/msam10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/publ
 ic/amsfonts/symbols/msbm10.pfb>
-Output written on hw4.pdf (6 pages, 188633 bytes).
+Output written on hw4.pdf (6 pages, 188719 bytes).
 PDF statistics:
  90 PDF objects out of 1000 (max. 8388607)
  65 compressed objects within 1 object stream
