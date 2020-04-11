@@ -12,5 +12,5 @@
 *.mat
 
 # data
-./HW4/hw4_lr/*
-./HW4/hw4_nb/*
+./HW4/hw4_lr/
+./HW4/hw4_nb/
